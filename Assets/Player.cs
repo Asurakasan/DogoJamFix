@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameObject player;
+    /*[Header("Attack Point")]
+    public Transform Punch1;
+    public Transform Punch2;
+    public Transform UpperCut;
+    public Transform LowKick;
+    */
+    public Transform attackPoint;
 
     [Header("Attack Settings")]
-    public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
@@ -29,6 +36,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
+        player = this.gameObject;
     }
     // Start is called before the first frame update
     void Update()
@@ -61,6 +69,7 @@ public class Player : MonoBehaviour
     void Idle()
     {
         //animPlayer.SetBool("walking", false);
+        //attackPoint = Punch1;
     }
     void Walk()
     {
@@ -69,14 +78,22 @@ public class Player : MonoBehaviour
 
         transform.Translate(horizontal, 0, 0);
         //animPlayer.SetBool("walking", true);
+        if (horizontal < 0)
+            transform.localScale = new Vector3(-1, 1, 1); 
+        else
+            transform.localScale = new Vector3(1, 1, 1);
+
+
+        //attackPoint = Punch1;
     }
     void Jump()
     {
         Rigid.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+        //attackPoint = UpperCut;
     }
     void Crouch()
     {
-        
+        //attackPoint = LowKick;
     }
 
     private void OnDrawGizmosSelected()
