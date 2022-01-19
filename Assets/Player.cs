@@ -20,13 +20,22 @@ public class Player : MonoBehaviour
     public bool Walking;
     public bool Jumping;
     public bool Crouching;
-    
+
+    //[Header("Animation")]
+    //public Animator animPlayer;
+
+    private Rigidbody2D Rigid;
+
+    private void Awake()
+    {
+        Rigid = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
             Attack();
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
             Walk();
         if (Input.GetKeyDown(KeyCode.Z))
             Jump();
@@ -42,36 +51,32 @@ public class Player : MonoBehaviour
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitenemies)
         {
-            Destroy(enemy.gameObject);
+            EnemyDamage(enemy);
         }
+    }
+    void EnemyDamage(Collider2D enemy)
+    {
+        Destroy(enemy.gameObject);
     }
     void Idle()
     {
-        IdleState = true;
-        Walking = false;
-        Jumping = false;
-        Crouching = false;
+        //animPlayer.SetBool("walking", false);
     }
     void Walk()
     {
-        IdleState = false;
-        Walking = true;
-        Jumping = false;
-        Crouching = false;
+        float horizontal = Input.GetAxis("Horizontal")*speed;
+        horizontal *= Time.deltaTime;
+
+        transform.Translate(horizontal, 0, 0);
+        //animPlayer.SetBool("walking", true);
     }
     void Jump()
     {
-        IdleState = false;
-        Walking = false;
-        Jumping = true;
-        Crouching = false;
+        Rigid.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
     }
     void Crouch()
     {
-        IdleState = false;
-        Walking = false;
-        Jumping = false;
-        Crouching = true;
+        
     }
 
     private void OnDrawGizmosSelected()
