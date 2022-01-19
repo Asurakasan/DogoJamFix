@@ -10,18 +10,19 @@ public class Enemy : MonoBehaviour
 
     public LayerMask playerLayer;
 
-    private GameObject Player;
+    protected GameObject Player;
+    protected MainGame mainGame; // script maingame
 
-    private MainGame mainGame;
 
-    private Vector2 movement; 
-    private Rigidbody2D rb;
-    public Vector2 playerposition;
+    protected Rigidbody2D rb;  //rigidbody
+    public Vector2 playerposition; // position du player
 
-    private bool right = true;
+    protected bool right = true; // right = !right;  // Change la direction
+
+
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         mainGame = MainGame.instance;
         Player = mainGame.Player;
@@ -42,9 +43,9 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-
+        // Movement
         if (right == false)
         {
             rb.velocity = new Vector2(Speed, 0);
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour
             rb.velocity = new Vector2(-Speed, 0);
         }
        
-       
+       //Detect Player
 
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         if(hitplayer !=null)
@@ -64,17 +65,24 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+   
+
+    //Attack
     void Attack()
     {
-        
+       
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         foreach (Collider2D player in hitplayer)
         {
             PlayerDamage(player);
         }
     }
-    void PlayerDamage(Collider2D player)
+
+    // Dommage
+    protected virtual void PlayerDamage(Collider2D player)
     {
+
         
 
     }
