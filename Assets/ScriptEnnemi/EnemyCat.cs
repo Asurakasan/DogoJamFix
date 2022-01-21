@@ -15,30 +15,30 @@ public class EnemyCat : EnemyBase2
     {
         base.Start();
         
+
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-       
+        
         base.Update();
-
-
-
-
-
-
-
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
-        //RigidCat.AddForce(new Vector2(10, jumpforce), ForceMode2D.Impulse);
+
+        rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse); //changer le x en positif et negatif 
+        //rb.velocity = new Vector2(0, jumpforce);
+        Debug.Log("test");
+        
         //right = !right;
         if (collision.gameObject.tag == "Player")
         {
+            
             Debug.Log("chat");
-            //RigidCat.AddForce(new Vector2(10, jumpforce), ForceMode2D.Impulse);
+            
         }
     }
 

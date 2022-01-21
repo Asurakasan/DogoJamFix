@@ -16,12 +16,14 @@ public class EnemyBase2 : MonoBehaviour
     protected MainGame mainGame; // script maingame
 
 
-    public Rigidbody2D rb;  //rigidbody
+    protected Rigidbody2D rb;  //rigidbody
     public Vector2 playerposition; // position du player
 
     protected bool right = true; // right = !right;  // Change la direction
 
+    public Collider2D detection;
 
+    float baseOffset;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -42,19 +44,26 @@ public class EnemyBase2 : MonoBehaviour
             right = true;
         }
 
+        baseOffset = detection.offset.x;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
+        
         // Movement
         if (right == false)
         {
-            rb.velocity = new Vector2(Speed, 0);
+            rb.velocity = new Vector2(Speed, rb.velocity.y);
+            //rb.AddForce(new Vector2(Speed, 0), ForceMode2D.Force);
+            detection.offset = new Vector2(baseOffset, detection.offset.y);
+            
         }
         else
         {
-            rb.velocity = new Vector2(-Speed, 0);
+            rb.velocity = new Vector2(-Speed, rb.velocity.y);
+            //rb.AddForce(new Vector2(-Speed, 0), ForceMode2D.Force) ;
+            detection.offset = new Vector2(-baseOffset, detection.offset.y);
         }
 
         //Detect Player
@@ -66,7 +75,6 @@ public class EnemyBase2 : MonoBehaviour
 
         }
 
-        rb.velocity = new Vector2(0, 1);
 
 
 
