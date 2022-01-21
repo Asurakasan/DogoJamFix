@@ -4,18 +4,36 @@ using UnityEngine;
 
 public class EnemyCat : EnemyBase2
 {
+    public float baseOffset;
 
     public float DetectionRange2;
-    public int jumpforce;
+    
 
-     
+    public Collider2D detection;
+
+    public float DetectionRangeCat;
+
+    public bool canJump;
 
     // Start is called before the first frame update
     protected override void Start()
     {
+
+
         base.Start();
+
         
 
+        if (right)
+        {
+            detection.offset = new Vector2(baseOffset, detection.offset.y);
+        }
+        else
+        {
+            detection.offset = new Vector2(-baseOffset, detection.offset.y);
+        }
+
+        baseOffset = detection.offset.x;
     }
 
     // Update is called once per frame
@@ -23,24 +41,12 @@ public class EnemyCat : EnemyBase2
     {
         
         base.Update();
-        
+
+       
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
-    {
-
-        rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse); //changer le x en positif et negatif 
-        //rb.velocity = new Vector2(0, jumpforce);
-        Debug.Log("test");
-        
-        //right = !right;
-        if (collision.gameObject.tag == "Player")
-        {
-            
-            Debug.Log("chat");
-            
-        }
-    }
+    
 
     protected override void PlayerDamage(Collider2D player)
     {
@@ -48,8 +54,7 @@ public class EnemyCat : EnemyBase2
 
     }
 
-
-
+   
 
 
 }
