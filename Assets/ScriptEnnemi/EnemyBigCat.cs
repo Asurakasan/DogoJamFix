@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCat : EnemyBase2
+public class EnemyBigCat : EnemyBase2
 {
     public float baseOffset;
     public Collider2D detection;
-    public bool canJump;
-    public int JumpForceCat;
+    public bool canDash;
+    public int DashForceCat;
 
+   public float currentTime = 0f;
+    public float dashTime ;
     
     
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
+        currentTime = dashTime;
         if (right)
         {
             detection.offset = new Vector2(baseOffset, detection.offset.y);
@@ -32,18 +34,27 @@ public class EnemyCat : EnemyBase2
     protected override void Update()
     {
         base.Update();
+        
 
-        if (canJump)
+        if (canDash && currentTime>=0)
         {
-            canJump = false;
-            rb.AddForce(new Vector2(0, JumpForceCat), ForceMode2D.Impulse);
+            
+            currentTime -= 1 * Time.deltaTime;
+            
+            rb.AddForce(new Vector2(DashForceCat, 0), ForceMode2D.Impulse);
 
         }
-       
+        else if(canDash)
+        {
+            canDash = false;
+            currentTime = dashTime;
+        }
+        
+
 
     }
 
-    
+
 
     protected override void PlayerDamage(Collider2D player)
     {
@@ -51,7 +62,14 @@ public class EnemyCat : EnemyBase2
 
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
+    {
+
+        right = !right;
+
+    }
+
+
 
 
 }
