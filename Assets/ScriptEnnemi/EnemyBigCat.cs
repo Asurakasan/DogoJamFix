@@ -9,7 +9,7 @@ public class EnemyBigCat : EnemyBase2
     public bool canDash;
     public int DashForceCat;
 
-   public float currentTime = 0f;
+    public float currentTime = 0f;
     public float dashTime ;
     
     
