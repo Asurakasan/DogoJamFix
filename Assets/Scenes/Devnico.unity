@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 995816570}
   m_Layer: 0
   m_Name: Ground (2)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 1370053736}
   m_Layer: 0
   m_Name: Ground (1)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,6 +941,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1351168609647829275, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: dashTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351168609647829275, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: baseOffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1924911183639839704, guid: a8021673e616b32428f37842ae44c62e, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -990,8 +998,28 @@ PrefabInstance:
       value: Enemy_BigCat
       objectReference: {fileID: 0}
     - target: {fileID: 7158287545626925975, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158287545626925975, guid: a8021673e616b32428f37842ae44c62e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.17
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193309161188203697, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193309161188203697, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: m_Offset.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193309161188203697, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: m_Offset.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8175552270806334085, guid: a8021673e616b32428f37842ae44c62e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8021673e616b32428f37842ae44c62e, type: 3}

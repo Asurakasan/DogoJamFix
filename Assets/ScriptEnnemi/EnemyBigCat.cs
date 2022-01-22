@@ -34,20 +34,41 @@ public class EnemyBigCat : EnemyBase2
     protected override void Update()
     {
         base.Update();
+
+        if (right)
+        {
+            detection.offset = new Vector2(baseOffset, detection.offset.y);
+        }
+        else
+        {
+            detection.offset = new Vector2(-baseOffset, detection.offset.y);
+        }
+
         
 
         if (canDash && currentTime>=0)
         {
+            if (right)
+            {
+                currentTime -= 1 * Time.deltaTime;
+
+                rb.AddForce(new Vector2(-DashForceCat, 0), ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                currentTime -= 1 * Time.deltaTime;
+
+                rb.AddForce(new Vector2(DashForceCat, 0), ForceMode2D.Impulse);
+            }
             
-            currentTime -= 1 * Time.deltaTime;
-            
-            rb.AddForce(new Vector2(DashForceCat, 0), ForceMode2D.Impulse);
 
         }
         else if(canDash)
         {
             canDash = false;
             currentTime = dashTime;
+            detection.GetComponent<Dash>().isDash = false;
         }
         
 
@@ -65,7 +86,15 @@ public class EnemyBigCat : EnemyBase2
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
 
-        right = !right;
+        if (collision.gameObject.tag == "wall")
+        {
+            canDash = false;
+            currentTime = dashTime;
+            detection.GetComponent<Dash>().isDash = false;
+            right = !right;
+
+        }
+           
 
     }
 
