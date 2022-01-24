@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 999578026}
   - component: {fileID: 999578025}
   - component: {fileID: 999578024}
+  - component: {fileID: 999578027}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -638,6 +639,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999578027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999578023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8a5f5522cf11e469dc54b55460b7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shake: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.7662268
+      outSlope: 0.7662268
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.44595334
+      value: 0.34170142
+      inSlope: -5.932348
+      outSlope: -5.932348
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.03865929
+    - serializedVersion: 3
+      time: 0.7274851
+      value: 0.34998143
+      inSlope: 3.8572967
+      outSlope: 3.8572967
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.106267065
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.0047302246
+      inSlope: -1.2669077
+      outSlope: -1.2669077
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShakeSpeed: 2
+  TimeBetweenShake: 0
 --- !u!1 &1200517237
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,17 +983,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6a4f63148b37940b928f1390b79a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Punch1: {fileID: 0}
+  Punch1Range: 0
+  Punch2: {fileID: 0}
+  UpperCut: {fileID: 0}
+  LowKick: {fileID: 0}
+  LowKickRange: 0
   attackPoint: {fileID: 0}
+  ult: {fileID: 0}
   attackRange: 0.5
+  ultiRange: 5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  chargeUlt: 0
+  addPoint: 0
+  maxUlt: 0
+  currentLife: 0
+  maxLife: 0
   speed: 5
   jumpforce: 0
-  IdleState: 0
-  Walking: 0
-  Jumping: 0
-  Crouching: 0
 --- !u!212 &1857168652
 SpriteRenderer:
   m_ObjectHideFlags: 0
