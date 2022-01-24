@@ -27,6 +27,7 @@ public class EnemyBase2 : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        
         mainGame = MainGame.instance;
         Player = mainGame.Player;
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -66,11 +67,16 @@ public class EnemyBase2 : MonoBehaviour
         //Detect Player
 
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
-        if (hitplayer != null)
+        foreach (Collider2D player in hitplayer)
         {
+            Physics2D.IgnoreLayerCollision(3, 6);
+           
             Attack();
 
         }
+        Physics2D.IgnoreLayerCollision(3, 6,false);
+        
+
 
 
 
@@ -86,6 +92,7 @@ public class EnemyBase2 : MonoBehaviour
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         foreach (Collider2D player in hitplayer)
         {
+           // Debug.Log("BIM");
             PlayerDamage(player);
         }
     }
@@ -103,5 +110,9 @@ public class EnemyBase2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, DetectionRange);
     }
 
+    protected void OnTriggerEnter2D(Collision2D PlayerColl)
+    {
+        
+    }
 
 }
