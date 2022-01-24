@@ -19,7 +19,6 @@ public class MainGame : MonoBehaviour
 
     public static MainGame instance;
 
-    public List<Collider2D>TriggerRuelle;
     public List<Collider2D> TriggerArene;
     public bool isEnter;
     public GameObject ArenaWall;

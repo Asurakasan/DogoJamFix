@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    MainGame maingame;
+   CameraManager cameramanager;
+
     private GameObject player;
     [Header("Attack Point")]
     public Transform Punch1;
@@ -48,6 +51,11 @@ public class Player : MonoBehaviour
         currentLife = maxLife;
         chargeUlt = 0;
         saveSpeed = speed;
+    }
+    private void Start()
+    {
+        maingame = MainGame.instance;
+        cameramanager = CameraManager.instance;
     }
     // Start is called before the first frame update
     void Update()
@@ -126,6 +134,28 @@ public class Player : MonoBehaviour
         }
         chargeUlt = 0;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        for (int i = 0; i <= maingame.TriggerArene.Count; i++)
+        {
+
+            if (collision == maingame.TriggerArene[i])
+            {
+                Debug.Log("oui");
+                cameramanager.target = collision.gameObject.transform;
+                cameramanager.cameraIsfollow = false;
+
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        cameramanager.cameraIsfollow = true;
+
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Dommage
+    // Dammage
     protected virtual void PlayerDamage(Collider2D player)
     {
 
