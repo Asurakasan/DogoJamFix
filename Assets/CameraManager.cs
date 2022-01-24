@@ -55,7 +55,6 @@ public class CameraManager : MonoBehaviour
         {
             c_VirtualCam.LookAt = target.transform;
             c_VirtualCam.Follow = target.transform;
-           // transform.position = new Vector3(Player.transform.position.x, position.y, position.z);
 
             position = transform.position;
         }
@@ -63,7 +62,6 @@ public class CameraManager : MonoBehaviour
         {
             c_VirtualCam.LookAt = Player.transform;
             c_VirtualCam.Follow = Player.transform;
-            // transform.position = new Vector3(Player.transform.position.x, position.y, position.z);
 
             position = transform.position;
         }

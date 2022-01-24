@@ -139,7 +139,6 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i <= maingame.TriggerArene.Count; i++)
         {
-
             if (collision == maingame.TriggerArene[i])
             {
                 Debug.Log("oui");
