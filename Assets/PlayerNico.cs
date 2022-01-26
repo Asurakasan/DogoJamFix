@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerNico : MonoBehaviour
 {
     MainGame maingame;
-   CameraManager cameramanager;
+    CameraManager cameramanager;
 
     private GameObject player;
     [Header("Attack Point")]
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public Transform UpperCut;
     public Transform LowKick;
     public float LowKickRange;
-    
+
     public Transform attackPoint;
     public Transform ult;
 
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             Attack();
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
             Walk();
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
             Crouch();
         if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
             Ulti();
-        if(!Input.anyKey)
+        if (!Input.anyKey)
             Idle();
 
         if (Input.GetKeyUp(KeyCode.S))
@@ -100,13 +100,13 @@ public class Player : MonoBehaviour
     void Walk()
     {
         speed = saveSpeed;
-        float horizontal = Input.GetAxis("Horizontal")*speed;
+        float horizontal = Input.GetAxis("Horizontal") * speed;
         horizontal *= Time.deltaTime;
 
         transform.Translate(horizontal, 0, 0);
         //animPlayer.SetBool("walking", true);
         if (horizontal < 0)
-            transform.localScale = new Vector3(-1, 1, 1); 
+            transform.localScale = new Vector3(-1, 1, 1);
         else
             transform.localScale = new Vector3(1, 1, 1);
 
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(-1, 0.7f, 1);
         attackPoint = LowKick;
         attackRange = LowKickRange;
-        
+
     }
     void Ulti()
     {
