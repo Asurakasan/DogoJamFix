@@ -38,14 +38,14 @@ public class EnemyBigCat : EnemyBase2
 
         if (right)
         {
-            detection.offset = new Vector2(baseOffset, detection.offset.y);
+            detection.offset = new Vector2(-baseOffset, detection.offset.y);
         }
         else
         {
-            detection.offset = new Vector2(-baseOffset, detection.offset.y);
+            detection.offset = new Vector2(baseOffset, detection.offset.y);
         }
 
-        
+
 
         if (canDash && currentTime>=0)
         {
