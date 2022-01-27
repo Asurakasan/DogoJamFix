@@ -12,10 +12,12 @@ public class Player : MonoBehaviour
     public Transform Punch1;
     public float Punch1Range;
     public Transform Punch2;
+    public float Punch2Range;
     public Transform UpperCut;
+    public float UppperCutRange;
     public Transform LowKick;
     public float LowKickRange;
-    
+    [Header("---------------")]
     public Transform attackPoint;
     public Transform ult;
 
@@ -136,6 +138,7 @@ public class Player : MonoBehaviour
         Rigid.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         attackPoint = UpperCut;
         IsGrounded = false;
+        attackRange = UppperCutRange;
     }
     void Crouch()
     {
