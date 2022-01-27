@@ -37,7 +37,10 @@ public class Player : MonoBehaviour
     public float speed;
     private float saveSpeed;
     public float jumpforce;
+    public bool IsGrounded, Crouched;
 
+    public SpriteRenderer SpritPlayer;
+    public Sprite[] SpriteList;
 
     //[Header("Animation")]
     //public Animator animPlayer;
@@ -60,21 +63,28 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(KeyCode.Space))
             Attack();
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (Crouched)
+                SpritPlayer.sprite = SpriteList[1];
+            if (!IsGrounded)
+                SpritPlayer.sprite = SpriteList[0];
+
+        }
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
             Walk();
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && IsGrounded)
             Jump();
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && IsGrounded)
             Crouch();
         if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
             Ulti();
         if(!Input.anyKey)
             Idle();
 
-        if (Input.GetKeyUp(KeyCode.S))
-            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     void Attack()
@@ -86,6 +96,12 @@ public class Player : MonoBehaviour
             EnemyDamage(enemy);
             chargeUlt += addPoint;
         }
+        if (Crouched)
+            SpritPlayer.sprite = SpriteList[2];
+        else if (!IsGrounded)
+            SpritPlayer.sprite = SpriteList[3];
+        else if (IsGrounded && !Crouched)
+            SpritPlayer.sprite = SpriteList[4];
     }
     void EnemyDamage(Collider2D enemy)
     {
@@ -93,9 +109,11 @@ public class Player : MonoBehaviour
     }
     void Idle()
     {
+        Crouched = false;
         //animPlayer.SetBool("walking", false);
         attackPoint = Punch1;
         attackRange = Punch1Range;
+        SpritPlayer.sprite = SpriteList[0];
     }
     void Walk()
     {
@@ -117,13 +135,14 @@ public class Player : MonoBehaviour
     {
         Rigid.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         attackPoint = UpperCut;
+        IsGrounded = false;
     }
     void Crouch()
     {
-        transform.localScale = new Vector3(-1, 0.7f, 1);
+        Crouched = true;
         attackPoint = LowKick;
         attackRange = LowKickRange;
-        
+        SpritPlayer.sprite = SpriteList[1];
     }
     void Ulti()
     {
@@ -163,5 +182,10 @@ public class Player : MonoBehaviour
             return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         Gizmos.DrawWireSphere(ult.position, ultiRange);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Sol"))
+            IsGrounded = true;
     }
 }
