@@ -18,6 +18,9 @@ public class EnemyBigCat : EnemyBase2
     {
         base.Start();
         currentTime = dashTime;
+
+        base.Start();
+
         if (right)
         {
             detection.offset = new Vector2(-baseOffset, detection.offset.y);
@@ -27,7 +30,7 @@ public class EnemyBigCat : EnemyBase2
             detection.offset = new Vector2(baseOffset, detection.offset.y);
         }
 
-        baseOffset = detection.offset.x;
+        //baseOffset = detection.offset.x;
     }
 
     // Update is called once per frame
@@ -36,14 +39,7 @@ public class EnemyBigCat : EnemyBase2
         base.Update();
 
 
-        if (right)
-        {
-            detection.offset = new Vector2(-baseOffset, detection.offset.y);
-        }
-        else
-        {
-            detection.offset = new Vector2(baseOffset, detection.offset.y);
-        }
+       
 
 
 
@@ -70,18 +66,7 @@ public class EnemyBigCat : EnemyBase2
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
-        }
-
-        
-            
-
-
-
-
-
-
-        
-
+        }   
 
     }
 
@@ -101,8 +86,20 @@ public class EnemyBigCat : EnemyBase2
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
-            right = !right;
+            //right = !right;
 
+            if (right)
+            {
+                right = false;
+                detection.offset = new Vector2(baseOffset, detection.offset.y);
+
+            }
+            else
+            {
+                right = true;
+                detection.offset = new Vector2(-baseOffset, detection.offset.y);
+
+            }
         }
            
 

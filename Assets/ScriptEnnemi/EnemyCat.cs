@@ -51,7 +51,15 @@ public class EnemyCat : EnemyBase2
 
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            right = !right;
+
+        }
+
+    }
 
 
 }
