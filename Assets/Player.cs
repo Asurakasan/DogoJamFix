@@ -91,26 +91,32 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            Attack();
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (!Invicible)
         {
-            if (Crouched)
-                SpritPlayer.sprite = SpriteList[1];
-            if (!IsGrounded)
-                SpritPlayer.sprite = SpriteList[0];
+            if (Input.GetKeyDown(KeyCode.Space))
+                Attack();
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (Crouched)
+                    SpritPlayer.sprite = SpriteList[1];
+                if (!IsGrounded)
+                    SpritPlayer.sprite = SpriteList[0];
+
+            }
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
+                Walk();
+            if (Input.GetKeyDown(KeyCode.Z) && IsGrounded)
+                Jump();
+            if (Input.GetKeyDown(KeyCode.S) && IsGrounded)
+                Crouch();
+            if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
+                Ulti();
+            if (!Input.anyKey)
+                Idle();
 
         }
-        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
-            Walk();
-        if (Input.GetKeyDown(KeyCode.Z) && IsGrounded)
-            Jump();
-        if (Input.GetKeyDown(KeyCode.S) && IsGrounded)
-            Crouch();
-        if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
-            Ulti();
-        if(!Input.anyKey)
-            Idle();
+
+       
 
     }
 
@@ -198,7 +204,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ennemis")
         {
 
-            Debug.Log("Bam");
+            currentLife = currentLife - 1;
             if (Invicible == false)
             {
                 TimeStart = InvicibleTime;

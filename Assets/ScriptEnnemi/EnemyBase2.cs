@@ -142,7 +142,7 @@ public class EnemyBase2 : MonoBehaviour
     protected virtual void PlayerDamage(Collider2D player)
     {
        // if (!Invicible)
-         //   Debug.Log("BIM");
+            Debug.Log("BIM");
 
     }
 
