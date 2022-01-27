@@ -8,7 +8,12 @@ public class EnemyBase2 : MonoBehaviour
     public float Damage;
     public float DetectionRange;
 
+    public bool Invicible;
 
+    public float InvicibleTime = 0f;
+    public float TimeStart;
+
+  
 
     public LayerMask playerLayer;
 
@@ -19,14 +24,18 @@ public class EnemyBase2 : MonoBehaviour
     protected Rigidbody2D rb;  //rigidbody
     public Vector2 playerposition; // position du player
 
-    protected bool right = true; // right = !right;  // Change la direction
+    public bool right ; // right = !right;  // Change la direction
 
-
+    protected int xPosition;
  
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        
+
+        TimeStart = InvicibleTime;
+
         mainGame = MainGame.instance;
         Player = mainGame.Player;
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -49,6 +58,7 @@ public class EnemyBase2 : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+
         
         // Movement
         if (right == false)
@@ -66,11 +76,41 @@ public class EnemyBase2 : MonoBehaviour
         //Detect Player
 
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
-        if (hitplayer != null)
+        foreach (Collider2D player in hitplayer)
         {
-            Attack();
+            Invicible = true;
+
+
+            //Attack();
+
+
+
+
+
 
         }
+
+        if (Invicible)
+        {
+            Debug.Log("Invicible");
+            Physics2D.IgnoreLayerCollision(3, 6);
+            TimeStart -= 1 * Time.deltaTime;
+
+            if (TimeStart <= 0)
+            {
+                Debug.Log("Poof");
+                TimeStart = InvicibleTime;
+                Invicible = false;
+                Physics2D.IgnoreLayerCollision(3, 6, false);
+
+            }
+
+          
+
+        
+
+        }
+
 
 
 
@@ -86,6 +126,7 @@ public class EnemyBase2 : MonoBehaviour
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         foreach (Collider2D player in hitplayer)
         {
+           // Debug.Log("BIM");
             PlayerDamage(player);
         }
     }
@@ -103,5 +144,9 @@ public class EnemyBase2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, DetectionRange);
     }
 
+    protected void OnTriggerEnter2D(Collider2D PlayerColl)
+    {
+        
+    }
 
 }
