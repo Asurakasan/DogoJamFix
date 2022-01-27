@@ -41,15 +41,18 @@ public class EnemyFlyCat : EnemyBase2
 
     protected override void PlayerDamage(Collider2D player)
     {
+
         base.PlayerDamage(player);
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
-        right = !right;
+        if (collision.gameObject.tag == "wall")
+        {
+            right = !right;
 
-
+        }
 
     }
 

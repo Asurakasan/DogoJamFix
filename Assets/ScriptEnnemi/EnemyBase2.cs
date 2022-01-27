@@ -8,10 +8,10 @@ public class EnemyBase2 : MonoBehaviour
     public float Damage;
     public float DetectionRange;
 
-    public bool Invicible;
+    //public bool Invicible;
 
-    public float InvicibleTime = 0f;
-    public float TimeStart;
+    //public float InvicibleTime = 0f;
+    //public float TimeStart;
 
   
 
@@ -32,9 +32,9 @@ public class EnemyBase2 : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        
+       
 
-        TimeStart = InvicibleTime;
+       // TimeStart = InvicibleTime;
 
         mainGame = MainGame.instance;
         Player = mainGame.Player;
@@ -78,10 +78,13 @@ public class EnemyBase2 : MonoBehaviour
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         foreach (Collider2D player in hitplayer)
         {
-            Invicible = true;
+            
+                Attack();
 
 
-            //Attack();
+           // Invicible = true;
+
+
 
 
 
@@ -90,15 +93,16 @@ public class EnemyBase2 : MonoBehaviour
 
         }
 
+        /*
         if (Invicible)
         {
-            Debug.Log("Invicible");
+            //Debug.Log("Invicible");
             Physics2D.IgnoreLayerCollision(3, 6);
             TimeStart -= 1 * Time.deltaTime;
 
             if (TimeStart <= 0)
             {
-                Debug.Log("Poof");
+                
                 TimeStart = InvicibleTime;
                 Invicible = false;
                 Physics2D.IgnoreLayerCollision(3, 6, false);
@@ -110,6 +114,8 @@ public class EnemyBase2 : MonoBehaviour
         
 
         }
+        */
+        
 
 
 
@@ -120,13 +126,14 @@ public class EnemyBase2 : MonoBehaviour
 
 
     //Attack
-    void Attack()
+    protected virtual void Attack()
     {
 
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, DetectionRange, playerLayer);
         foreach (Collider2D player in hitplayer)
         {
-           // Debug.Log("BIM");
+            //if (!Invicible)
+              //  Debug.Log("BIM");
             PlayerDamage(player);
         }
     }
@@ -134,8 +141,8 @@ public class EnemyBase2 : MonoBehaviour
     // Dommage
     protected virtual void PlayerDamage(Collider2D player)
     {
-
-
+       // if (!Invicible)
+         //   Debug.Log("BIM");
 
     }
 

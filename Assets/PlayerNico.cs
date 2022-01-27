@@ -42,7 +42,14 @@ public class PlayerNico : MonoBehaviour
     //[Header("Animation")]
     //public Animator animPlayer;
 
+    public bool Invicible;
+
     private Rigidbody2D Rigid;
+
+    public float DetectionRange;
+
+    public  float InvicibleTime = 0f;
+    public float TimeStart;
 
     private void Awake()
     {
@@ -54,12 +61,34 @@ public class PlayerNico : MonoBehaviour
     }
     private void Start()
     {
+        Invicible = false;
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
     }
     // Start is called before the first frame update
     void Update()
     {
+        
+        if (Invicible)
+        {
+            //Debug.Log("Invicible");
+
+
+
+            TimeStart -= 1 * Time.deltaTime;
+
+
+            if (TimeStart <= 0)
+            {
+
+                TimeStart = InvicibleTime;
+                Invicible = false;
+                Physics2D.IgnoreLayerCollision(3, 6, false);
+
+            }
+        }
+
+        
         if (Input.GetKeyDown(KeyCode.Space))
             Attack();
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
@@ -75,6 +104,10 @@ public class PlayerNico : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.S))
             transform.localScale = new Vector3(-1, 1, 1);
+
+        
+
+        
     }
 
     void Attack()
@@ -135,18 +168,41 @@ public class PlayerNico : MonoBehaviour
         chargeUlt = 0;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if (collision.gameObject.tag == "Ennemis")
+        {
+
+
+            if (Invicible==false)
+            {
+                TimeStart = InvicibleTime;
+                Invicible = true;
+                Physics2D.IgnoreLayerCollision(3, 6);
+            }
+
+
+
+            
+        }   
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        for (int i = 0; i < maingame.TriggerArene.Count; i++)
-        {
-            if (collision == maingame.TriggerArene[i])
-            {
-                Debug.Log("oui");
-                cameramanager.target = collision.gameObject.transform;
-                cameramanager.cameraIsfollow = false;
+        /* for (int i = 0; i < maingame.TriggerArene.Count; i++)
+         {
+             if (collision == maingame.TriggerArene[i])
+             {
+                 Debug.Log("oui");
+                 cameramanager.target = collision.gameObject.transform;
+                 cameramanager.cameraIsfollow = false;
 
-            }
-        }
+             }
+         }
+        */
+
+
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -157,6 +213,7 @@ public class PlayerNico : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+
         if (attackPoint == null)
             return;
         if (ult == null)
@@ -164,4 +221,8 @@ public class PlayerNico : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         Gizmos.DrawWireSphere(ult.position, ultiRange);
     }
+
+    
+        
+    
 }
