@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 921514902343565064}
   m_Layer: 6
   m_Name: Enemy_Cat
-  m_TagString: Untagged
+  m_TagString: Ennemis
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000059604645, y: -0.008709043}
+  m_Offset: {x: 0.009396553, y: -0.00011071563}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -59,7 +59,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1277331, y: 0.5703532}
+  m_Size: {x: 0.760746, y: 0.58754987}
   m_EdgeRadius: 0
 --- !u!50 &1773881318080569770
 Rigidbody2D:
@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d81774818b7564b8db97f82948f2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 2
   Damage: 0
-  DetectionRange: 0
+  DetectionRange: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -105,7 +105,7 @@ MonoBehaviour:
   baseOffset: -2
   detection: {fileID: 7193309161188203697}
   canJump: 0
-  JumpForceCat: 0
+  JumpForceCat: 8
 --- !u!1 &7181876985006604515
 GameObject:
   m_ObjectHideFlags: 0

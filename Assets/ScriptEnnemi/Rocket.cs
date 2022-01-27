@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" )
         {
-            Debug.Log("Bim");
+            
         }
 
 
