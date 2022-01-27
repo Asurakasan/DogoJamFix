@@ -17,7 +17,7 @@ public class JumpScript : MonoBehaviour
 
         }
 
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Sol")
             isJump = false;
 
 

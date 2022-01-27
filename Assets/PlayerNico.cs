@@ -168,15 +168,17 @@ public class PlayerNico : MonoBehaviour
         chargeUlt = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+  
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.gameObject.tag == "Ennemis")
         {
 
 
-            if (Invicible==false)
+            if (Invicible == false)
             {
+                Debug.Log("Invicible");
                 TimeStart = InvicibleTime;
                 Invicible = true;
                 Physics2D.IgnoreLayerCollision(3, 6);
@@ -184,12 +186,9 @@ public class PlayerNico : MonoBehaviour
 
 
 
-            
-        }   
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /* for (int i = 0; i < maingame.TriggerArene.Count; i++)
+
+        }
+       for (int i = 0; i < maingame.TriggerArene.Count; i++)
          {
              if (collision == maingame.TriggerArene[i])
              {
@@ -199,10 +198,10 @@ public class PlayerNico : MonoBehaviour
 
              }
          }
-        */
-
-
        
+
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

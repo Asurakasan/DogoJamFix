@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8867233111007850995}
   - component: {fileID: 1773881318080569770}
   - component: {fileID: 921514902343565064}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Enemy_Cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerposition: {x: 0, y: 0}
+  right: 0
   baseOffset: -2
   detection: {fileID: 7193309161188203697}
   canJump: 0
@@ -115,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8471112873660278586}
   - component: {fileID: 2470739729753051070}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +199,7 @@ GameObject:
   - component: {fileID: 7158287545626925975}
   - component: {fileID: 7193309161188203697}
   - component: {fileID: 4357359603229953882}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: JumpZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

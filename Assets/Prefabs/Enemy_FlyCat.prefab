@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8867233111007850995}
   - component: {fileID: 1773881318080569770}
   - component: {fileID: 7914743256411297882}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Enemy_FlyCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   playerposition: {x: 0, y: 0}
+  right: 0
   rocket: {fileID: 0}
   currentTime: 0
   ThrowTime: 0
@@ -113,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8471112873660278586}
   - component: {fileID: 2470739729753051070}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D Rigid;
 
+    public bool Invicible;
+
+    public float InvicibleTime = 0f;
+    public float TimeStart;
+
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
@@ -59,13 +64,33 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        Invicible = false;
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
     }
     // Start is called before the first frame update
     void Update()
     {
-        
+
+        if (Invicible)
+        {
+            //Debug.Log("Invicible");
+
+
+
+            TimeStart -= 1 * Time.deltaTime;
+
+
+            if (TimeStart <= 0)
+            {
+
+                TimeStart = InvicibleTime;
+                Invicible = false;
+                Physics2D.IgnoreLayerCollision(3, 6, false);
+
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
             Attack();
         if (Input.GetKeyUp(KeyCode.Space))
@@ -169,6 +194,34 @@ public class Player : MonoBehaviour
 
             }
         }
+
+        if (collision.gameObject.tag == "Ennemis")
+        {
+
+            Debug.Log("Bam");
+            if (Invicible == false)
+            {
+                TimeStart = InvicibleTime;
+                Invicible = true;
+                Physics2D.IgnoreLayerCollision(3, 6);
+            }
+
+
+
+
+        }
+        for (int i = 0; i < maingame.TriggerArene.Count; i++)
+        {
+            if (collision == maingame.TriggerArene[i])
+            {
+                Debug.Log("oui");
+                cameramanager.target = collision.gameObject.transform;
+                cameramanager.cameraIsfollow = false;
+
+            }
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -191,4 +244,6 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Sol"))
             IsGrounded = true;
     }
+
+   
 }
