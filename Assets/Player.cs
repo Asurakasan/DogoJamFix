@@ -68,14 +68,14 @@ public class Player : MonoBehaviour
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-        HealthBar.Instance.MaxValue(maxLife);
-        UltBar.Instance.MaxValue(maxUlt);
+        //HealthBar.Instance.MaxValue(maxLife);
+        //UltBar.Instance.MaxValue(maxUlt);
     }
     // Start is called before the first frame update
     void Update()
     {
-        HealthBar.Instance.SetHealth(currentLife);
-        UltBar.Instance.SetUlt(chargeUlt);
+       // HealthBar.Instance.SetHealth(currentLife);
+        //UltBar.Instance.SetUlt(chargeUlt);
         if (Invicible)
         {
             //Debug.Log("Invicible");

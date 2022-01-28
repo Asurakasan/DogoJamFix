@@ -7,6 +7,8 @@ TagManager:
   - Ennemis
   - Ground
   - Sol
+  - wall
+  - Out
   layers:
   - Default
   - TransparentFX

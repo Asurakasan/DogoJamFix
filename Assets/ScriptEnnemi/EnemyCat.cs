@@ -16,6 +16,9 @@ public class EnemyCat : EnemyBase2
     {
         base.Start();
 
+        //Permet de changer le positionnement de la box de détection
+
+
         if (right)
         {
             detection.offset = new Vector2(baseOffset, detection.offset.y);
@@ -32,6 +35,8 @@ public class EnemyCat : EnemyBase2
     protected override void Update()
     {
         base.Update();
+
+        //Lance l'attack jump 
 
         if (canJump)
         {
@@ -53,9 +58,11 @@ public class EnemyCat : EnemyBase2
 
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
+
+        //destruction du chat quand il sort de l'écran
         if (collision.gameObject.tag == "wall")
         {
-            right = !right;
+            Destroy(gameObject);
 
         }
 

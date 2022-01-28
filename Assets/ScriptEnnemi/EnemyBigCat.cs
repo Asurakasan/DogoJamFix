@@ -21,6 +21,7 @@ public class EnemyBigCat : EnemyBase2
 
         base.Start();
 
+        //Permet de changer le positionnement de la box de détection
         if (right)
         {
             detection.offset = new Vector2(-baseOffset, detection.offset.y);
@@ -30,7 +31,6 @@ public class EnemyBigCat : EnemyBase2
             detection.offset = new Vector2(baseOffset, detection.offset.y);
         }
 
-        //baseOffset = detection.offset.x;
     }
 
     // Update is called once per frame
@@ -38,10 +38,7 @@ public class EnemyBigCat : EnemyBase2
     {
         base.Update();
 
-
-       
-
-
+        //Lance l'attack dash
 
         if (canDash && currentTime>=0)
         {
@@ -69,9 +66,6 @@ public class EnemyBigCat : EnemyBase2
         }   
 
     }
-
-
-
     protected override void PlayerDamage(Collider2D player)
     {
         base.PlayerDamage(player);
@@ -80,13 +74,14 @@ public class EnemyBigCat : EnemyBase2
 
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
+        //Si le gros chat touche un mur il repart dans le sens opposé 
 
         if (collision.gameObject.tag == "wall")
         {
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
-            //right = !right;
+            
 
             if (right)
             {

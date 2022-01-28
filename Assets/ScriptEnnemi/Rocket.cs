@@ -6,9 +6,11 @@ public class Rocket : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" )
+        //Gestion des dégats de la rocket et destruction de la rocket
+
+        if (other.gameObject.tag == "Player" || other.gameObject.tag=="Out")
         {
-            
+            Destroy(gameObject);
         }
 
 

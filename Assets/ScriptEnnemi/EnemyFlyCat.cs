@@ -10,7 +10,6 @@ public class EnemyFlyCat : EnemyBase2
     public float ThrowTime;
 
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -21,12 +20,11 @@ public class EnemyFlyCat : EnemyBase2
 
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
 
-       
+        //Crée une rocket toute les X secondes
 
         currentTime -= 1 * Time.deltaTime;
 
@@ -46,8 +44,10 @@ public class EnemyFlyCat : EnemyBase2
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
+    private void OnCollisionEnter2D(Collision2D collision) 
     {
+        //Change le sens quand le chat entre en contact avec le mur
+
         if (collision.gameObject.tag == "wall")
         {
             right = !right;

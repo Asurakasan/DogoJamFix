@@ -9,9 +9,11 @@ public class Dash : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Quand le player rentre dans la zone de détection, on lance le dash
+
         if (other.gameObject.tag == "Player" && isDash==false)
         {
-            Debug.Log("chat");
+           
             Cat.GetComponent<EnemyBigCat>().canDash = true;
             isDash = true;
 
