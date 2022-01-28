@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,10 @@ public class CameraManager : MonoBehaviour
 
     public static CameraManager instance;
     [SerializeField] bool Shake;
-    [SerializeField] AnimationCurve animationCurve;
-    [SerializeField] float ShakeSpeed;
-    [SerializeField] float TimeBetweenShake;
+    [SerializeField] float ShakTimer;
+    [SerializeField] float Intensity;
+    [SerializeField] float Timing;
+
 
     public Transform target;
 
@@ -18,7 +20,7 @@ public class CameraManager : MonoBehaviour
     bool isfollowing;
     public bool cameraIsfollow;
 
-    public Cinemachine.CinemachineVirtualCamera c_VirtualCam;
+    public CinemachineVirtualCamera c_VirtualCam;
 
 
     Vector3 position;
@@ -42,13 +44,24 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ShakTimer > 0)
+        {
+            ShakTimer -= Time.deltaTime;
+            if(ShakTimer <= 0f)
+            {
+                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = c_VirtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+
+            }
+        }
+       
         transform.position = position + offset;
         if(Shake)
         {
-
-            StartCameraShake();
-          
+            ShakeCam(Intensity, Timing);
+            //   StartCameraShake();
+            Shake = !Shake;
         }
 
         if (!cameraIsfollow)
@@ -69,7 +82,17 @@ public class CameraManager : MonoBehaviour
 
     }
     #region CameraShake
-    public void StartCameraShake()
+
+    public void ShakeCam(float intensity, float time)
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = c_VirtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        ShakTimer = time;
+    }
+
+
+    /*public void StartCameraShake()
     {
 
         StartCoroutine(screenShake());
@@ -85,7 +108,7 @@ public class CameraManager : MonoBehaviour
             yield return null;
             
         }
-    }
+    }*/
     #endregion
 
 
