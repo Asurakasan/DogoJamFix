@@ -56,6 +56,10 @@ public class Player : MonoBehaviour
     public float InvicibleTime = 0f;
     public float TimeStart;
 
+    public Collider2D dammage;
+   
+    public float  InCrounch;
+    private float Stand;
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
@@ -66,6 +70,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        Stand = dammage.offset.y;
+
         Invicible = false;
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
@@ -78,8 +84,21 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-       //HealthBar.Instance.SetHealth(currentLife); //COMENT NICO
-       //UltBar.Instance.SetUlt(chargeUlt); //COMENT NICO
+        if (Crouched)
+        {
+            dammage.offset = new Vector2(dammage.offset.x, InCrounch);
+
+        }
+
+        else
+        {
+            dammage.offset = new Vector2(dammage.offset.x, Stand);
+
+
+        }
+
+        //HealthBar.Instance.SetHealth(currentLife); //COMENT NICO
+        //UltBar.Instance.SetUlt(chargeUlt); //COMENT NICO
         if (Invicible)
         {
 

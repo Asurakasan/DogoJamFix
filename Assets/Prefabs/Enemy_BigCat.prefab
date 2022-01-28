@@ -108,7 +108,7 @@ MonoBehaviour:
   canDash: 0
   DashForceCat: 10
   currentTime: 0
-  dashTime: 1
+  dashTime: 2
 --- !u!1 &7181876985006604515
 GameObject:
   m_ObjectHideFlags: 0
