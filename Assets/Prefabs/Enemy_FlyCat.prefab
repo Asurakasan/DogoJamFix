@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22730d67e066f0846a0a491e45495499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 2
   Damage: 0
   DetectionRange: 0
   playerLayer:
@@ -101,9 +101,10 @@ MonoBehaviour:
     m_Bits: 8
   playerposition: {x: 0, y: 0}
   right: 0
+  IsDead: 0
   rocket: {fileID: 4888948078221408159, guid: 6ae669406b7fd5a4f9f7a328bfeb5a3c, type: 3}
   currentTime: 0
-  ThrowTime: 1
+  ThrowTime: 3
 --- !u!1 &7181876985006604515
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ public class EnemyBigCat : EnemyBase2
         base.Start();
         currentTime = dashTime;
 
+        baseOffset = detection.offset.x;
+
         base.Start();
 
         //Permet de changer le positionnement de la box de détection

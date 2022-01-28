@@ -70,15 +70,15 @@ public class Player : MonoBehaviour
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-        HealthBar.Instance.MaxValue(maxLife);
-        UltBar.Instance.MaxValue(maxUlt);
+       //HealthBar.Instance.MaxValue(maxLife); COMENT NICO
+        //UltBar.Instance.MaxValue(maxUlt); COMENT NICO
         punch1 = true;
     }
     // Start is called before the first frame update
     void Update()
     {
-       HealthBar.Instance.SetHealth(currentLife);
-       UltBar.Instance.SetUlt(chargeUlt);
+       //HealthBar.Instance.SetHealth(currentLife); //COMENT NICO
+       //UltBar.Instance.SetUlt(chargeUlt); //COMENT NICO
         if (Invicible)
         {
 
