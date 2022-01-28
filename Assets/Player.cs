@@ -78,8 +78,8 @@ public class Player : MonoBehaviour
         //UltBar.Instance.SetUlt(chargeUlt);
         if (Invicible)
         {
-            //Debug.Log("Invicible");
 
+            SpritPlayer.sprite = SpriteList[5]; //Ajout NICO
 
 
             TimeStart -= 1 * Time.deltaTime;
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
                 TimeStart = InvicibleTime;
                 Invicible = false;
                 Physics2D.IgnoreLayerCollision(3, 6, false);
-
+                SpritPlayer.sprite = SpriteList[0]; //Ajout NICO
             }
         }
 
@@ -142,7 +142,13 @@ public class Player : MonoBehaviour
     }
     void EnemyDamage(Collider2D enemy)
     {
-        Destroy(enemy.gameObject);
+        if (enemy.gameObject.tag == "Ennemis") //Ajout NICO
+        {
+            enemy.GetComponent<EnemyBase2>().IsDead = true; //Ajout NICO
+            Destroy(enemy.gameObject);
+
+        }
+       
     }
     void Idle()
     {
@@ -205,7 +211,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Ennemis")
+        if (collision.gameObject.tag == "Ennemis" || collision.gameObject.tag == "Rocket") //Ajout NICO
         {
 
             currentLife = currentLife - 1;

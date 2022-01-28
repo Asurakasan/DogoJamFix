@@ -40,7 +40,7 @@ public class EnemyBigCat : EnemyBase2
 
         //Lance l'attack dash
 
-        if (canDash && currentTime>=0)
+        if (canDash && currentTime>=0 && !IsDead)
         {
             if (right)
             {
@@ -58,7 +58,7 @@ public class EnemyBigCat : EnemyBase2
             
 
         }
-        else if(canDash)
+        else if(canDash )
         {
             canDash = false;
             currentTime = dashTime;

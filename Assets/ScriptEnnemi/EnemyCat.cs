@@ -38,7 +38,7 @@ public class EnemyCat : EnemyBase2
 
         //Lance l'attack jump 
 
-        if (canJump)
+        if (canJump && !IsDead)  
         {
             canJump = false;
             rb.AddForce(new Vector2(0, JumpForceCat), ForceMode2D.Impulse);

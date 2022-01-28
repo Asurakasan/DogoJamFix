@@ -21,6 +21,8 @@ public class EnemyBase2 : MonoBehaviour
     public bool right ; // right = !right;  // Change la direction
 
     protected int xPosition;
+
+    public bool IsDead;
  
 
     // Start is called before the first frame update

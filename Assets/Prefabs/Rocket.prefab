@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 9030575025094605356}
   m_Layer: 6
   m_Name: Rocket
-  m_TagString: Ennemis
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
