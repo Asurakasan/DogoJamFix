@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
 
     public bool Invicible;
 
+    public bool punch1, punch2;
+
     public float InvicibleTime = 0f;
     public float TimeStart;
 
@@ -68,14 +70,15 @@ public class Player : MonoBehaviour
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-        //HealthBar.Instance.MaxValue(maxLife);
-        //UltBar.Instance.MaxValue(maxUlt);
+        HealthBar.Instance.MaxValue(maxLife);
+        UltBar.Instance.MaxValue(maxUlt);
+        punch1 = true;
     }
     // Start is called before the first frame update
     void Update()
     {
-       // HealthBar.Instance.SetHealth(currentLife);
-        //UltBar.Instance.SetUlt(chargeUlt);
+       HealthBar.Instance.SetHealth(currentLife);
+       UltBar.Instance.SetUlt(chargeUlt);
         if (Invicible)
         {
             //Debug.Log("Invicible");
@@ -97,15 +100,33 @@ public class Player : MonoBehaviour
 
         if (!Invicible)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                Attack();
+            if (Input.GetKey(KeyCode.Space))
+            {
+               if(punch1)
+               {
+                    Attack1();
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+
+                        punch2 = true;
+                        punch1 = false;
+                    }
+               }
+               else if(punch2)
+               {
+                    Attack2();
+                    punch1 = true;
+                    punch2 = false;
+               }
+            }
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 if (Crouched)
                     SpritPlayer.sprite = SpriteList[1];
                 if (!IsGrounded)
                     SpritPlayer.sprite = SpriteList[0];
-
+                punch2 = false;
+                punch1 = true;
             }
             if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
                 Walk();
@@ -124,8 +145,10 @@ public class Player : MonoBehaviour
 
     }
 
-    void Attack()
+    void Attack1()
     {
+        Debug.Log("punch1");
+        attackPoint = Punch1;
         speed = 0;
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitenemies)
@@ -139,6 +162,28 @@ public class Player : MonoBehaviour
             SpritPlayer.sprite = SpriteList[3];
         else if (IsGrounded && !Crouched)
             SpritPlayer.sprite = SpriteList[4];
+        
+        
+    }
+    void Attack2()
+    {
+        Debug.Log("punch2");
+        attackPoint = Punch2;
+        speed = 0;
+        Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitenemies)
+        {
+            EnemyDamage(enemy);
+            chargeUlt += addPoint;
+        }
+        if (Crouched)
+            SpritPlayer.sprite = SpriteList[2];
+        else if (!IsGrounded)
+            SpritPlayer.sprite = SpriteList[3];
+        else if (IsGrounded && !Crouched)
+            SpritPlayer.sprite = SpriteList[5];
+        
+
     }
     void EnemyDamage(Collider2D enemy)
     {
