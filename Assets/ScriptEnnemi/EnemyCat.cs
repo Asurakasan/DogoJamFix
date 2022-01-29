@@ -9,12 +9,18 @@ public class EnemyCat : EnemyBase2
     public bool canJump;
     public int JumpForceCat;
 
-    
-    
+    public GameObject visual;
+    public Animator animator;
+    public SpriteRenderer sprite;
+
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        animator = visual.gameObject.GetComponent<Animator>();
+        sprite = visual.gameObject.GetComponent<SpriteRenderer>();
 
         //Permet de changer le positionnement de la box de détection
 
@@ -22,10 +28,16 @@ public class EnemyCat : EnemyBase2
         if (right)
         {
             detection.offset = new Vector2(baseOffset, detection.offset.y);
+
+
+            sprite.flipX = false;
         }
         else
         {
             detection.offset = new Vector2(-baseOffset, detection.offset.y);
+
+
+            sprite.flipX = true;
         }
 
         baseOffset = detection.offset.x;
@@ -42,9 +54,12 @@ public class EnemyCat : EnemyBase2
         {
             canJump = false;
             rb.AddForce(new Vector2(0, JumpForceCat), ForceMode2D.Impulse);
+            animator.SetBool("Attack", true);
 
         }
-       
+
+        
+
 
     }
 
@@ -65,6 +80,14 @@ public class EnemyCat : EnemyBase2
             Destroy(gameObject);
 
         }
+
+        if(collision.gameObject.tag=="Sol")
+        {
+           
+            animator.SetBool("Attack", false);
+
+        }
+           
 
     }
 

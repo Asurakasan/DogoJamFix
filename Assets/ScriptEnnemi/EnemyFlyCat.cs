@@ -9,12 +9,26 @@ public class EnemyFlyCat : EnemyBase2
     public float currentTime = 0f;
     public float ThrowTime;
 
+    public GameObject visual;
+    public Animator animator;
+    public SpriteRenderer sprite;
 
     protected override void Start()
     {
         base.Start();
 
-        
+        animator = visual.gameObject.GetComponent<Animator>();
+        sprite = visual.gameObject.GetComponent<SpriteRenderer>();
+
+
+        if (right)
+        {
+          sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
 
         currentTime = ThrowTime;
 
@@ -51,7 +65,7 @@ public class EnemyFlyCat : EnemyBase2
         if (collision.gameObject.tag == "wall")
         {
             right = !right;
-
+            sprite.flipX = !sprite.flipX;
         }
 
     }

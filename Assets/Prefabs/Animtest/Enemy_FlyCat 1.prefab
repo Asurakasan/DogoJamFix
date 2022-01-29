@@ -105,6 +105,9 @@ MonoBehaviour:
   rocket: {fileID: 4888948078221408159, guid: 6ae669406b7fd5a4f9f7a328bfeb5a3c, type: 3}
   currentTime: 0
   ThrowTime: 2
+  visual: {fileID: 7181876985006604515}
+  animator: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!1 &7181876985006604515
 GameObject:
   m_ObjectHideFlags: 0

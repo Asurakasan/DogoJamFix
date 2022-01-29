@@ -11,26 +11,37 @@ public class EnemyBigCat : EnemyBase2
 
     public float currentTime = 0f;
     public float dashTime ;
+
+    public GameObject visual;
+    public Animator animator;
+    public SpriteRenderer sprite; 
     
     
     // Start is called before the first frame update
     protected override void Start()
     {
+        animator = visual.gameObject.GetComponent<Animator>();
+        sprite = visual.gameObject.GetComponent<SpriteRenderer>();
+
         base.Start();
         currentTime = dashTime;
 
         baseOffset = detection.offset.x;
 
-        base.Start();
+        
 
         //Permet de changer le positionnement de la box de détection
         if (right)
         {
             detection.offset = new Vector2(-baseOffset, detection.offset.y);
+
+            sprite.flipX = false;
         }
         else
         {
             detection.offset = new Vector2(baseOffset, detection.offset.y);
+
+            sprite.flipX = true;
         }
 
     }
@@ -50,18 +61,24 @@ public class EnemyBigCat : EnemyBase2
 
                 rb.AddForce(new Vector2(-DashForceCat, 0), ForceMode2D.Impulse);
 
+                animator.SetBool("Attack", true);
+
             }
             else
             {
                 currentTime -= 1 * Time.deltaTime;
 
                 rb.AddForce(new Vector2(DashForceCat, 0), ForceMode2D.Impulse);
+
+                animator.SetBool("Attack", true);
+
             }
             
 
         }
         else if(canDash )
         {
+            animator.SetBool("Attack", false);
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
@@ -80,6 +97,7 @@ public class EnemyBigCat : EnemyBase2
 
         if (collision.gameObject.tag == "wall")
         {
+            animator.SetBool("Attack", false);
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
@@ -89,12 +107,14 @@ public class EnemyBigCat : EnemyBase2
             {
                 right = false;
                 detection.offset = new Vector2(baseOffset, detection.offset.y);
+                sprite.flipX = true;
 
             }
             else
             {
                 right = true;
                 detection.offset = new Vector2(-baseOffset, detection.offset.y);
+                sprite.flipX = false;
 
             }
         }

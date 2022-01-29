@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8867233111007850995}
   - component: {fileID: 1773881318080569770}
   - component: {fileID: 1351168609647829275}
-  - component: {fileID: 904138581899514277}
   m_Layer: 6
   m_Name: Enemy_BigCat
   m_TagString: Ennemis
@@ -110,25 +109,9 @@ MonoBehaviour:
   DashForceCat: 10
   currentTime: 0
   dashTime: 5
---- !u!95 &904138581899514277
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027080059011152388}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f79a4bb53da46f54b9cd10061dba533a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  visual: {fileID: 7181876985006604515}
+  animator: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!1 &7181876985006604515
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8471112873660278586}
   - component: {fileID: 2470739729753051070}
+  - component: {fileID: 1583696074154483823}
   m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
@@ -202,7 +186,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 8992918185330647273, guid: a82b86fe905b68146b87f446e6aae150, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.42, y: 0.85}
@@ -211,6 +195,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1583696074154483823
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181876985006604515}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d0617c65d759e941adf4774dc6cacd4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8175552270806334085
 GameObject:
   m_ObjectHideFlags: 0

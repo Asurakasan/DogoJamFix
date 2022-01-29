@@ -1322,7 +1322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &486001554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,6 +2734,10 @@ PrefabInstance:
       propertyPath: rocket
       value: 
       objectReference: {fileID: 4888948078221408159, guid: 0f3274495fcf9324489a1bf9153a5cb4, type: 3}
+    - target: {fileID: 7914743256411297882, guid: 2d48c62ebadb01d40ad2712bef76882e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8731963718526157960, guid: 2d48c62ebadb01d40ad2712bef76882e, type: 3}
       propertyPath: m_Controller
       value: 
@@ -5500,6 +5504,11 @@ MonoBehaviour:
   Enemy: {fileID: 2027080059011152388, guid: 63567c7c64e1f2448b2e33b7def6676d, type: 3}
   CoolDownBeforeSpawn: 0.5
   EnemyCount: 1
+--- !u!61 &1900258088 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1205837870718738935, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
+  m_PrefabInstance: {fileID: 1951975187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1922235043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,9 +5682,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8668597876279250072, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
+      propertyPath: dammage
+      value: 
+      objectReference: {fileID: 1900258088}
     - target: {fileID: 8668597876279250073, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
       propertyPath: m_Name
       value: PlayerConstantin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668597876279250073, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8668597876279250079, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
       propertyPath: m_RootOrder
