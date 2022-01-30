@@ -21,8 +21,9 @@ public class MainGame : MonoBehaviour
 
     public List<Collider2D> TriggerArene;
     public bool isEnter;
-    public GameObject ArenaWall;
-
+     private bool isspawn;
+    public List<GameObject>  ArenaWall;
+    [HideInInspector] public int index;
     
 
     private void Awake()
@@ -39,12 +40,16 @@ public class MainGame : MonoBehaviour
 
     void Update()
     {
-        if(isEnter == true)
+        if(isEnter == true )
         {
-            StartCoroutine(waveManagers[0].WaveSpawn());
+         
+
+                StartCoroutine(waveManagers[index].WaveSpawn());
+                ArenaWall[index].SetActive(true);
             isEnter = false;
+            
         }
-        
+
         if(countdown >= 0 )
         {
             countdown -= Time.deltaTime;
