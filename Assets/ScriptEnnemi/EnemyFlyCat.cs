@@ -47,6 +47,13 @@ public class EnemyFlyCat : EnemyBase2
             Instantiate(rocket, transform.position, Quaternion.identity);
             currentTime = ThrowTime;
         }
+
+        if (IsDead)
+        {
+            animator.SetTrigger("Hurt");
+        }
+
+
     }
 
 
@@ -61,6 +68,9 @@ public class EnemyFlyCat : EnemyBase2
     private void OnCollisionEnter2D(Collision2D collision) 
     {
         //Change le sens quand le chat entre en contact avec le mur
+
+        if (IsDead)
+            Destroy(gameObject);
 
         if (collision.gameObject.tag == "wall")
         {

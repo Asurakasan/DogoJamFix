@@ -58,12 +58,18 @@ public class EnemyCat : EnemyBase2
 
         }
 
-        
+
+        if (IsDead)
+        {
+            animator.SetTrigger("Hurt");
+        }
+
+
 
 
     }
 
-    
+
 
     protected override void PlayerDamage(Collider2D player)
     {

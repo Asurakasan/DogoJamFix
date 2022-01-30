@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
         if (enemy.gameObject.tag == "Ennemis") //Ajout NICO
         {
             enemy.GetComponent<EnemyBase2>().IsDead = true; //Ajout NICO
-            Destroy(enemy.gameObject);
+            //Destroy(enemy.gameObject);
 
         }
        

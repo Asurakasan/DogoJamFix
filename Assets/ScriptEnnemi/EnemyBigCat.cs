@@ -82,7 +82,12 @@ public class EnemyBigCat : EnemyBase2
             canDash = false;
             currentTime = dashTime;
             detection.GetComponent<Dash>().isDash = false;
-        }   
+        }
+
+        if (IsDead)
+        {
+            animator.SetTrigger("Hurt");
+        }
 
     }
     protected override void PlayerDamage(Collider2D player)
@@ -94,6 +99,9 @@ public class EnemyBigCat : EnemyBase2
     private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
         //Si le gros chat touche un mur il repart dans le sens opposé 
+
+        if (IsDead)
+            Destroy(gameObject);
 
         if (collision.gameObject.tag == "wall")
         {

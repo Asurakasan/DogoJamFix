@@ -73,6 +73,27 @@ public class EnemyBase2 : MonoBehaviour
             Attack();
         }
 
+        if (IsDead==true)
+        {
+            //Destroy(gameObject);
+
+            if (right)
+            {
+                Speed =0;
+                rb.AddForce(new Vector2(200,3));
+
+            }
+            else
+            {
+                Speed = 0;
+                rb.AddForce(new Vector2(-200,3));
+
+            }
+
+            
+
+        }
+
     }
 
     //Attack
@@ -101,5 +122,7 @@ public class EnemyBase2 : MonoBehaviour
     {
         
     }
+
+   
 
 }
