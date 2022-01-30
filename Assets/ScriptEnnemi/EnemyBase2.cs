@@ -25,6 +25,7 @@ public class EnemyBase2 : MonoBehaviour
     public bool IsDead;
  
 
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -80,13 +81,13 @@ public class EnemyBase2 : MonoBehaviour
             if (right)
             {
                 Speed =0;
-                rb.AddForce(new Vector2(200,3));
+                rb.AddForce(new Vector2(150,5));
 
             }
             else
             {
                 Speed = 0;
-                rb.AddForce(new Vector2(-200,3));
+                rb.AddForce(new Vector2(-150,5));
 
             }
 
