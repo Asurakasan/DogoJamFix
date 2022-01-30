@@ -9,6 +9,7 @@ TagManager:
   - Sol
   - wall
   - Out
+  - Rocket
   layers:
   - Default
   - TransparentFX

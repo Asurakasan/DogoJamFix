@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     public float speed;
     private float saveSpeed;
     public float jumpforce;
-    public bool IsGrounded, Crouched;
+    public bool IsGrounded, Crouched, CanWalk;
 
     public SpriteRenderer SpritPlayer;
     public Sprite[] SpriteList;
@@ -51,9 +51,15 @@ public class Player : MonoBehaviour
 
     public bool Invicible;
 
+    public bool punch1, punch2;
+
     public float InvicibleTime = 0f;
     public float TimeStart;
 
+    public Collider2D dammage;
+   
+    public float  InCrounch;
+    private float Stand;
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
@@ -64,22 +70,39 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        Stand = dammage.offset.y;
+
         Invicible = false;
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-        //HealthBar.Instance.MaxValue(maxLife);
-        //UltBar.Instance.MaxValue(maxUlt);
+       //HealthBar.Instance.MaxValue(maxLife); COMENT NICO
+        //UltBar.Instance.MaxValue(maxUlt); COMENT NICO
+        punch1 = true;
+        CanWalk = true;
     }
     // Start is called before the first frame update
     void Update()
     {
-       // HealthBar.Instance.SetHealth(currentLife);
-        //UltBar.Instance.SetUlt(chargeUlt);
+        if (Crouched)
+        {
+            dammage.offset = new Vector2(dammage.offset.x, InCrounch);
+
+        }
+
+        else
+        {
+            dammage.offset = new Vector2(dammage.offset.x, Stand);
+
+
+        }
+
+        //HealthBar.Instance.SetHealth(currentLife); //COMENT NICO
+        //UltBar.Instance.SetUlt(chargeUlt); //COMENT NICO
         if (Invicible)
         {
-            //Debug.Log("Invicible");
 
+            SpritPlayer.sprite = SpriteList[5]; //Ajout NICO
 
 
             TimeStart -= 1 * Time.deltaTime;
@@ -91,28 +114,52 @@ public class Player : MonoBehaviour
                 TimeStart = InvicibleTime;
                 Invicible = false;
                 Physics2D.IgnoreLayerCollision(3, 6, false);
-
+                SpritPlayer.sprite = SpriteList[0]; //Ajout NICO
             }
         }
 
         if (!Invicible)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                Attack();
+            if (Input.GetKey(KeyCode.Space))
+            {
+               if(punch1)
+               {
+                    Attack1();
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+
+                        punch2 = true;
+                        punch1 = false;
+                    }
+               }
+               else if(punch2)
+               {
+                    Attack2();
+                    punch1 = true;
+                    punch2 = false;
+               }
+            }
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 if (Crouched)
                     SpritPlayer.sprite = SpriteList[1];
                 if (!IsGrounded)
                     SpritPlayer.sprite = SpriteList[0];
-
+                if(IsGrounded)
+                {
+                    punch2 = false;
+                    punch1 = true;
+                }
+                
             }
-            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D)) && CanWalk)
                 Walk();
             if (Input.GetKeyDown(KeyCode.Z) && IsGrounded)
                 Jump();
             if (Input.GetKeyDown(KeyCode.S) && IsGrounded)
                 Crouch();
+            if (Input.GetKeyUp(KeyCode.S) && IsGrounded)
+                CanWalk = true;
             if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
                 Ulti();
             if (!Input.anyKey)
@@ -124,8 +171,9 @@ public class Player : MonoBehaviour
 
     }
 
-    void Attack()
+    void Attack1()
     {
+        Debug.Log("punch1");
         speed = 0;
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitenemies)
@@ -138,18 +186,59 @@ public class Player : MonoBehaviour
         else if (!IsGrounded)
             SpritPlayer.sprite = SpriteList[3];
         else if (IsGrounded && !Crouched)
+        {
+            attackPoint = Punch1;
             SpritPlayer.sprite = SpriteList[4];
+        }
+        
+    }
+    void Attack2()
+    {
+        Debug.Log("punch2");
+       
+        speed = 0;
+        Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitenemies)
+        {
+            EnemyDamage(enemy);
+            chargeUlt += addPoint;
+        }
+        if (Crouched)
+            SpritPlayer.sprite = SpriteList[2];
+        else if (!IsGrounded)
+            SpritPlayer.sprite = SpriteList[3];
+        else if (IsGrounded && !Crouched)
+        {
+            attackPoint = Punch2;
+            SpritPlayer.sprite = SpriteList[5];
+        }
+
     }
     void EnemyDamage(Collider2D enemy)
     {
-        Destroy(enemy.gameObject);
+        if (enemy.gameObject.tag == "Ennemis") //Ajout NICO
+        {
+            enemy.GetComponent<EnemyBase2>().IsDead = true; //Ajout NICO
+            //Destroy(enemy.gameObject);
+
+        }
+       
     }
     void Idle()
     {
         Crouched = false;
         //animPlayer.SetBool("walking", false);
-        attackPoint = Punch1;
-        attackRange = Punch1Range;
+        if (IsGrounded)
+        {
+            attackPoint = Punch1;
+            attackRange = Punch1Range;
+
+        }
+        else
+        {
+            attackPoint = UpperCut;
+            attackRange = UppperCutRange;
+        }
         SpritPlayer.sprite = SpriteList[0];
     }
     void Walk()
@@ -165,8 +254,8 @@ public class Player : MonoBehaviour
         else
             transform.localScale = new Vector3(1, 1, 1);
 
-
-        attackPoint = Punch1;
+        if(IsGrounded)
+            attackPoint = Punch1;
     }
     void Jump()
     {
@@ -177,6 +266,8 @@ public class Player : MonoBehaviour
     }
     void Crouch()
     {
+        CanWalk = false;
+        speed = 0;
         Crouched = true;
         attackPoint = LowKick;
         attackRange = LowKickRange;
@@ -205,7 +296,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Ennemis")
+        if (collision.gameObject.tag == "Ennemis" || collision.gameObject.tag == "Rocket") //Ajout NICO
         {
 
             currentLife = currentLife - 1;

@@ -21,6 +21,8 @@ public class EnemyBase2 : MonoBehaviour
     public bool right ; // right = !right;  // Change la direction
 
     protected int xPosition;
+
+    public bool IsDead;
  
 
     // Start is called before the first frame update
@@ -71,6 +73,27 @@ public class EnemyBase2 : MonoBehaviour
             Attack();
         }
 
+        if (IsDead==true)
+        {
+            //Destroy(gameObject);
+
+            if (right)
+            {
+                Speed =0;
+                rb.AddForce(new Vector2(200,3));
+
+            }
+            else
+            {
+                Speed = 0;
+                rb.AddForce(new Vector2(-200,3));
+
+            }
+
+            
+
+        }
+
     }
 
     //Attack
@@ -99,5 +122,7 @@ public class EnemyBase2 : MonoBehaviour
     {
         
     }
+
+   
 
 }

@@ -9,12 +9,26 @@ public class EnemyFlyCat : EnemyBase2
     public float currentTime = 0f;
     public float ThrowTime;
 
+    public GameObject visual;
+    public Animator animator;
+    public SpriteRenderer sprite;
 
     protected override void Start()
     {
         base.Start();
 
-        
+        animator = visual.gameObject.GetComponent<Animator>();
+        sprite = visual.gameObject.GetComponent<SpriteRenderer>();
+
+
+        if (right)
+        {
+          sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
 
         currentTime = ThrowTime;
 
@@ -33,6 +47,13 @@ public class EnemyFlyCat : EnemyBase2
             Instantiate(rocket, transform.position, Quaternion.identity);
             currentTime = ThrowTime;
         }
+
+        if (IsDead)
+        {
+            animator.SetTrigger("Hurt");
+        }
+
+
     }
 
 
@@ -48,10 +69,13 @@ public class EnemyFlyCat : EnemyBase2
     {
         //Change le sens quand le chat entre en contact avec le mur
 
+        if (IsDead)
+            Destroy(gameObject);
+
         if (collision.gameObject.tag == "wall")
         {
             right = !right;
-
+            sprite.flipX = !sprite.flipX;
         }
 
     }
