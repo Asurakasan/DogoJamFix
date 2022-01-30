@@ -292,6 +292,7 @@ public class Player : MonoBehaviour
                 Debug.Log("oui");
                 cameramanager.target = collision.gameObject.transform;
                 cameramanager.cameraIsfollow = false;
+                maingame.isEnter = true;
 
             }
         }
@@ -327,7 +328,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        cameramanager.cameraIsfollow = true;
+        foreach (var item in maingame.ennemyObject)
+        {
+            if(item == null)
+            {
+                cameramanager.cameraIsfollow = true;
+            }
+
+
+        }
+        
 
     }
 

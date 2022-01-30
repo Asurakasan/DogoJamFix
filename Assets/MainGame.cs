@@ -24,6 +24,7 @@ public class MainGame : MonoBehaviour
      private bool isspawn;
     public List<GameObject>  ArenaWall;
     [HideInInspector] public int index;
+    public GameObject[] ennemyObject;
     
 
     private void Awake()
@@ -46,7 +47,7 @@ public class MainGame : MonoBehaviour
 
                 StartCoroutine(waveManagers[index].WaveSpawn());
                 ArenaWall[index].SetActive(true);
-            isEnter = false;
+                isEnter = false;
             
         }
 
