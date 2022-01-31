@@ -180,12 +180,16 @@ public class Player : MonoBehaviour
         if(IsGrounded)
             animPlayer.SetBool("IsJumping", false);
 
+        if(!IsGrounded && Input.GetKeyDown(KeyCode.Space))
+            animPlayer.SetTrigger("AttackAir");
 
+        if (Crouched && Input.GetKeyDown(KeyCode.Space))
+            animPlayer.SetTrigger("Kick");
     }
 
     void Attack1()
     {
-        Debug.Log("punch1");
+        animPlayer.SetTrigger("Attack1");
         speed = 0;
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitenemies)
