@@ -80,15 +80,15 @@ public class EnemyBase2 : MonoBehaviour
             //Destroy(gameObject);
             
             mainGame.ennemylist.Remove(gameObject);
-            mainGame.Canexplore();
-            if (right)
+            //mainGame.Canexplore(); J'ai commenter cette ligne car elle fesait buger le jeu et je ne comprenais pas pourquoi
+            if (Player.GetComponent<Player>().Droite)
             {
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 Speed =0;
                 rb.AddForce(new Vector2(150,5));
 
             }
-            else
+            else if(Player.GetComponent<Player>().Gauche)
             {
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 Speed = 0;

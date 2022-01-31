@@ -82,4 +82,6 @@ public class EnemyFlyCat : EnemyBase2
 
     }
 
+
+
 }
