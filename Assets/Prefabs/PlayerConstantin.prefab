@@ -89,7 +89,7 @@ Transform:
   - {fileID: 8668597876283355850}
   - {fileID: 8668597877391451106}
   m_Father: {fileID: 8668597876279250079}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8668597876279250073
 GameObject:
@@ -103,8 +103,6 @@ GameObject:
   - component: {fileID: 8668597876279250072}
   - component: {fileID: 8668597876279250077}
   - component: {fileID: 8668597876279250078}
-  - component: {fileID: 8668597876279250076}
-  - component: {fileID: 6606381709630194699}
   m_Layer: 3
   m_Name: PlayerConstantin
   m_TagString: Player
@@ -124,9 +122,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6481503254135139746}
-  - {fileID: 7980773871609752957}
   - {fileID: 8668597875977108227}
   - {fileID: 8668597876756636754}
+  - {fileID: 7980773871609752957}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -159,15 +157,15 @@ MonoBehaviour:
     m_Bits: 64
   chargeUlt: 0
   addPoint: 0
-  maxUlt: 0
-  currentLife: 10
-  maxLife: 0
+  maxUlt: 100
+  currentLife: 0
+  maxLife: 5
   speed: 8
   jumpforce: 8
   IsGrounded: 0
   Crouched: 0
   CanWalk: 0
-  SpritPlayer: {fileID: 0}
+  SpritPlayer: {fileID: 781973813550944755}
   SpriteList:
   - {fileID: 21300000, guid: aa5f834d09b71af4cb824baa41d17b16, type: 3}
   - {fileID: 21300000, guid: 6c2006f18cd96c642a4f16fb049708cc, type: 3}
@@ -175,7 +173,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 84476e5bee37e004e97240f7440f8546, type: 3}
   - {fileID: 21300000, guid: b73ab3a5e328f1b4a8f6ce1c045c67df, type: 3}
   - {fileID: 21300000, guid: 4944e7274c9d5b444b50f64bc84036eb, type: 3}
-  animPlayer: {fileID: 0}
+  animPlayer: {fileID: 1469892690}
   Invicible: 0
   punch1: 0
   punch2: 0
@@ -232,41 +230,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!111 &8668597876279250076
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8668597876279250073}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f3ccf73efc6eb6f43b3bb75d1938fd50, type: 2}
-  m_Animations:
-  - {fileID: 0}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!95 &6606381709630194699
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8668597876279250073}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb8bcee47380bab4d91c8f224c18d168, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8668597876283355851
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8668597876279250079}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8668597876991766741
 GameObject:
@@ -427,6 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7980773871609752957}
   - component: {fileID: 781973813550944755}
+  - component: {fileID: 1469892690}
   m_Layer: 0
   m_Name: Test_Doge_idle_game_jam_0
   m_TagString: Untagged
@@ -442,11 +406,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9062014862813700443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.16, y: 5.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8668597876279250079}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &781973813550944755
 SpriteRenderer:
@@ -499,3 +463,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1469892690
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062014862813700443}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb8bcee47380bab4d91c8f224c18d168, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
