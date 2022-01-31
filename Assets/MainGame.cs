@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+    using UnityEngine;
 
 public class MainGame : MonoBehaviour
 {
@@ -24,8 +24,8 @@ public class MainGame : MonoBehaviour
      private bool isspawn;
     public List<GameObject>  ArenaWall;
     [HideInInspector] public int index;
-    public GameObject[] ennemyObject;
-    
+   
+    public List<GameObject> ennemylist = new List<GameObject>();
 
     private void Awake()
     {
@@ -43,12 +43,9 @@ public class MainGame : MonoBehaviour
     {
         if(isEnter == true )
         {
-         
-
                 StartCoroutine(waveManagers[index].WaveSpawn());
                 ArenaWall[index].SetActive(true);
                 isEnter = false;
-            
         }
 
         if(countdown >= 0 )
@@ -59,11 +56,23 @@ public class MainGame : MonoBehaviour
 
     }
 
+    public void Canexplore()
+    {
+        if( ennemylist.Count == 0)
+        {
+
+            ArenaWall[index].SetActive(false);
+            waveManagers.Remove(waveManagers[index]);
+            ArenaWall.Remove(ArenaWall[index]);
+        }
+        
+    }
 
 
     public void SpawnEnemy(GameObject enemyPrefab, Transform SpawnPoint)
     {
 
-        Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
+       GameObject Newennemy = GameObject.Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation) as GameObject;
+        ennemylist.Add(Newennemy);
     }
 }

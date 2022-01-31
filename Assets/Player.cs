@@ -289,10 +289,11 @@ public class Player : MonoBehaviour
         {
             if (collision == maingame.TriggerArene[i])
             {
-                Debug.Log("oui");
+                maingame.index = i;
                 cameramanager.target = collision.gameObject.transform;
                 cameramanager.cameraIsfollow = false;
                 maingame.isEnter = true;
+                maingame.TriggerArene.Remove(maingame.TriggerArene[i]);
 
             }
         }
@@ -328,7 +329,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        foreach (var item in maingame.ennemyObject)
+       /* foreach (var item in maingame.ennemyObject)
         {
             if(item == null)
             {
@@ -336,7 +337,7 @@ public class Player : MonoBehaviour
             }
 
 
-        }
+        }*/
         
 
     }

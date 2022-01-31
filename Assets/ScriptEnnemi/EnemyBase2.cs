@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBase2 : MonoBehaviour
 {
+    
     public float Speed;
     public float Damage;
     public float DetectionRange;
@@ -77,7 +78,9 @@ public class EnemyBase2 : MonoBehaviour
         if (IsDead==true)
         {
             //Destroy(gameObject);
-
+            
+            mainGame.ennemylist.Remove(gameObject);
+            mainGame.Canexplore();
             if (right)
             {
                 Speed =0;
@@ -94,6 +97,8 @@ public class EnemyBase2 : MonoBehaviour
             
 
         }
+
+
 
     }
 
