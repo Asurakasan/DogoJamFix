@@ -44,9 +44,10 @@ public class Player : MonoBehaviour
     public SpriteRenderer SpritPlayer;
     public Sprite[] SpriteList;
 
-    //[Header("Animation")]
-    //public Animator animPlayer;
+    [Header("Animation")]
+    public Animator animPlayer;
 
+    [Header("Other")]
     private Rigidbody2D Rigid;
 
     public bool Invicible;
@@ -119,10 +120,12 @@ public class Player : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(3, 6, false);
                 SpritPlayer.sprite = SpriteList[0]; //Ajout NICO
             }
+            animPlayer.SetBool("Hurt", true);
         }
 
         if (!Invicible)
         {
+            animPlayer.SetBool("Hurt", false);
             if (Input.GetKey(KeyCode.Space))
             {
                if(punch1)
@@ -162,7 +165,11 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S) && IsGrounded)
                 Crouch();
             if (Input.GetKeyUp(KeyCode.S) && IsGrounded)
+            {
                 CanWalk = true;
+                animPlayer.SetBool("IsCrounching", false);
+            }
+
             if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
                 Ulti();
             if (!Input.anyKey)
@@ -170,7 +177,9 @@ public class Player : MonoBehaviour
 
         }
 
-       
+        if(IsGrounded)
+            animPlayer.SetBool("IsJumping", false);
+
 
     }
 
@@ -230,12 +239,12 @@ public class Player : MonoBehaviour
     void Idle()
     {
         Crouched = false;
-        //animPlayer.SetBool("walking", false);
+        animPlayer.SetBool("IsWalking", false);
         if (IsGrounded)
         {
             attackPoint = Punch1;
             attackRange = Punch1Range;
-
+            attackRange = Punch1Range;
         }
         else
         {
@@ -251,7 +260,7 @@ public class Player : MonoBehaviour
         horizontal *= Time.deltaTime;
 
         transform.Translate(horizontal, 0, 0);
-        //animPlayer.SetBool("walking", true);
+        animPlayer.SetBool("IsWalking", true);
         if (horizontal < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -270,6 +279,8 @@ public class Player : MonoBehaviour
     }
     void Jump()
     {
+        animPlayer.SetTrigger("TakeOf");
+        animPlayer.SetBool("IsJumping", true);
         Rigid.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         attackPoint = UpperCut;
         IsGrounded = false;
@@ -277,6 +288,7 @@ public class Player : MonoBehaviour
     }
     void Crouch()
     {
+        animPlayer.SetBool("IsCrounching", true); 
         CanWalk = false;
         speed = 0;
         Crouched = true;
