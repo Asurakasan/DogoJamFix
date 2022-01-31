@@ -106,7 +106,7 @@ MonoBehaviour:
   baseOffset: 5
   detection: {fileID: 1100578350447011606}
   canDash: 0
-  DashForceCat: 10
+  DashForceCat: 5
   currentTime: 0
   dashTime: 5
   visual: {fileID: 7181876985006604515}
@@ -273,7 +273,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.950146, y: -0.14307517}
+  m_Offset: {x: 2.4599242, y: -0.14307517}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -284,5 +284,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.214883, y: 1.9905216}
+  m_Size: {x: 3.234439, y: 1.9905216}
   m_EdgeRadius: 0

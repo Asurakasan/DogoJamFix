@@ -80,12 +80,14 @@ public class EnemyBase2 : MonoBehaviour
 
             if (right)
             {
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 Speed =0;
                 rb.AddForce(new Vector2(150,5));
 
             }
             else
             {
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 Speed = 0;
                 rb.AddForce(new Vector2(-150,5));
 
@@ -119,11 +121,13 @@ public class EnemyBase2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, DetectionRange);
     }
 
-    protected void OnTriggerEnter2D(Collider2D PlayerColl)
+    protected void OnTriggerEnter2D(Collider2D Wall)
     {
-        
+        if (Wall.gameObject.tag == "wall" && IsDead)
+        Destroy(gameObject);
+
     }
 
-   
+
 
 }

@@ -74,8 +74,10 @@ public class EnemyFlyCat : EnemyBase2
 
         if (collision.gameObject.tag == "wall")
         {
-            right = !right;
-            sprite.flipX = !sprite.flipX;
+            IsDead = true;
+            Destroy(gameObject);
+            //right = !right;
+            //sprite.flipX = !sprite.flipX;
         }
 
     }
