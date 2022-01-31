@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
    
     public float  InCrounch;
     private float Stand;
+
+    [Header("Direction")]
+    public bool Gauche, Droite;
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
@@ -76,8 +79,8 @@ public class Player : MonoBehaviour
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-       //HealthBar.Instance.MaxValue(maxLife); COMENT NICO
-        //UltBar.Instance.MaxValue(maxUlt); COMENT NICO
+        HealthBar.Instance.MaxValue(maxLife);
+        UltBar.Instance.MaxValue(maxUlt); 
         punch1 = true;
         CanWalk = true;
     }
@@ -97,8 +100,8 @@ public class Player : MonoBehaviour
 
         }
 
-        //HealthBar.Instance.SetHealth(currentLife); //COMENT NICO
-        //UltBar.Instance.SetUlt(chargeUlt); //COMENT NICO
+        HealthBar.Instance.SetHealth(currentLife); 
+        UltBar.Instance.SetUlt(chargeUlt); 
         if (Invicible)
         {
 
@@ -250,9 +253,17 @@ public class Player : MonoBehaviour
         transform.Translate(horizontal, 0, 0);
         //animPlayer.SetBool("walking", true);
         if (horizontal < 0)
-            transform.localScale = new Vector3(-1, 1, 1); 
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            Gauche = true;
+            Droite = false;
+        }
         else
+        {
             transform.localScale = new Vector3(1, 1, 1);
+            Gauche = false;
+            Droite = true;
+        }
 
         if(IsGrounded)
             attackPoint = Punch1;
