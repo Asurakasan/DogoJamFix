@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: a1e4c93c16bfd334699f12af61b1d4a7
+  - enabled: 1
+    path: Assets/Scenes/Touche.unity
+    guid: c77fc2e0cd46f514aaefa1bd9256bd47
+  - enabled: 1
+    path: Assets/Scenes/Devnico.unity
+    guid: 34272ea9a0c2bde4b96286fe48d10177
   m_configObjects: {}
