@@ -8,10 +8,10 @@ public class CameraManager : MonoBehaviour
     MainGame maingame;
 
     public static CameraManager instance;
-    [SerializeField] bool Shake;
+    public bool Shake;
     [SerializeField] float ShakTimer;
-    [SerializeField] float Intensity;
-    [SerializeField] float Timing;
+    public float Intensity;
+    public float Timing;
 
 
     public Transform target;
@@ -44,6 +44,8 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if(ShakTimer > 0)
         {
             ShakTimer -= Time.deltaTime;

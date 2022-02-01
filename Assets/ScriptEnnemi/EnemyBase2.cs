@@ -14,6 +14,7 @@ public class EnemyBase2 : MonoBehaviour
 
     protected GameObject Player;
     protected MainGame mainGame; // script maingame
+    protected CameraManager cameraManager; // script maingame
 
 
     protected Rigidbody2D rb;  //rigidbody
@@ -30,7 +31,7 @@ public class EnemyBase2 : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-       
+        cameraManager = CameraManager.instance;
         mainGame = MainGame.instance;
         Player = mainGame.Player;
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -77,6 +78,7 @@ public class EnemyBase2 : MonoBehaviour
 
         if (IsDead==true)
         {
+
             //Destroy(gameObject);
             
 
@@ -84,6 +86,7 @@ public class EnemyBase2 : MonoBehaviour
             Speed = 0;
             DetectionRange = 0;
             mainGame.Canexplore(); //J'ai commenter cette ligne car elle fesait buger le jeu et je ne comprenais pas pourquoi
+
             if (Player.GetComponent<Player>().Droite)
             {
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -114,6 +117,7 @@ public class EnemyBase2 : MonoBehaviour
         foreach (Collider2D player in hitplayer)
         {
             PlayerDamage(player);
+            cameraManager.ShakeCam(cameraManager.Intensity * 2, cameraManager.Timing);
         }
     }
 

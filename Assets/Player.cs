@@ -84,8 +84,8 @@ public class Player : MonoBehaviour
         maingame = MainGame.instance;
         cameramanager = CameraManager.instance;
 
-        HealthBar.Instance.MaxValue(maxLife);
-        UltBar.Instance.MaxValue(maxUlt); 
+       HealthBar.Instance.MaxValue(maxLife);
+       UltBar.Instance.MaxValue(maxUlt); 
         punch1 = true;
         CanWalk = true;
     }
@@ -244,6 +244,7 @@ public class Player : MonoBehaviour
         if (enemy.gameObject.tag == "Ennemis") //Ajout NICO
         {
             enemy.GetComponent<EnemyBase2>().IsDead = true; //Ajout NICO
+            cameramanager.ShakeCam(cameramanager.Intensity, cameramanager.Timing);
             //Destroy(enemy.gameObject);
 
         }
