@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(currentLife <= 0)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Start");
 
         if (Crouched)
         {
@@ -333,6 +333,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("End"))
+            SceneManager.LoadScene("Start");
+
         for (int i = 0; i < maingame.TriggerArene.Count; i++)
         {
             if (collision == maingame.TriggerArene[i])
