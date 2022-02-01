@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1740859112}
-  cameraManager: {fileID: 0}
+  cameraManager: {fileID: 2014612871}
   waveManagers:
   - {fileID: 1177467207}
   - {fileID: 1684619242}
