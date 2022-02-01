@@ -5914,6 +5914,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8668597876279250072, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
+      propertyPath: maxUlt
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668597876279250072, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
+      propertyPath: addPoint
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8668597876279250073, guid: ffe4419b7582d3c41abe5711ecf6a853, type: 3}
       propertyPath: m_Name
       value: PlayerConstantin
