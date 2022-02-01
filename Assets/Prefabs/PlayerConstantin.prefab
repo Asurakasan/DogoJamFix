@@ -141,25 +141,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Punch1: {fileID: 8668597876991766740}
-  Punch1Range: 1
+  Punch1Range: 1.57
   Punch2: {fileID: 8668597877251829923}
-  Punch2Range: 0
+  Punch2Range: 1.57
   UpperCut: {fileID: 8668597876283355850}
   UppperCutRange: 1.24
   LowKick: {fileID: 8668597877391451106}
   LowKickRange: 0.5
-  attackPoint: {fileID: 8668597876283355850}
+  attackPoint: {fileID: 8668597877251829923}
   ult: {fileID: 8668597876756636754}
-  attackRange: 1.24
+  attackRange: 1.57
   ultiRange: 6
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
   chargeUlt: 0
-  addPoint: 0
-  maxUlt: 100
+  addPoint: 5
+  maxUlt: 20
   currentLife: 0
-  maxLife: 15
+  maxLife: 20
   speed: 8
   jumpforce: 8
   IsGrounded: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   bPunch1: 0
   bPunch2: 0
   bInAnim: 0
+  FxUlti: {fileID: 0}
   Invicible: 0
   punch1: 0
   punch2: 0
@@ -347,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8668597877251829916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.29, y: 0, z: 0}
+  m_LocalPosition: {x: 1.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8668597875977108227}
