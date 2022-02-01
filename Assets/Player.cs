@@ -126,25 +126,11 @@ public class Player : MonoBehaviour
         if (!Invicible)
         {
             animPlayer.SetBool("Hurt", false);
-            if (Input.GetKey(KeyCode.Space))
-            {
-               if(punch1)
-               {
-                    Attack1();
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                    {
 
-                        punch2 = true;
-                        punch1 = false;
-                    }
-               }
-               else if(punch2)
-               {
-                    Attack2();
-                    punch1 = true;
-                    punch2 = false;
-               }
-            }
+            if (Input.GetKeyDown(KeyCode.Space))
+                Attack1();
+
+            
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 if (Crouched)
@@ -208,7 +194,8 @@ public class Player : MonoBehaviour
         }
         
     }
-    void Attack2()
+
+    /*void Attack2()
     {
         Debug.Log("punch2");
        
@@ -229,7 +216,8 @@ public class Player : MonoBehaviour
             SpritPlayer.sprite = SpriteList[5];
         }
 
-    }
+    }*/
+
     void EnemyDamage(Collider2D enemy)
     {
         if (enemy.gameObject.tag == "Ennemis") //Ajout NICO
