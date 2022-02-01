@@ -145,12 +145,12 @@ MonoBehaviour:
   Punch2: {fileID: 8668597877251829923}
   Punch2Range: 0
   UpperCut: {fileID: 8668597876283355850}
-  UppperCutRange: 1
+  UppperCutRange: 1.24
   LowKick: {fileID: 8668597877391451106}
   LowKickRange: 0.5
-  attackPoint: {fileID: 8668597876991766740}
+  attackPoint: {fileID: 8668597876283355850}
   ult: {fileID: 8668597876756636754}
-  attackRange: 1
+  attackRange: 1.24
   ultiRange: 6
   enemyLayers:
     serializedVersion: 2
@@ -159,7 +159,7 @@ MonoBehaviour:
   addPoint: 0
   maxUlt: 100
   currentLife: 0
-  maxLife: 5
+  maxLife: 15
   speed: 8
   jumpforce: 8
   IsGrounded: 0
@@ -174,6 +174,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b73ab3a5e328f1b4a8f6ce1c045c67df, type: 3}
   - {fileID: 21300000, guid: 4944e7274c9d5b444b50f64bc84036eb, type: 3}
   animPlayer: {fileID: 1469892690}
+  bPunch1: 0
+  bPunch2: 0
+  bInAnim: 0
   Invicible: 0
   punch1: 0
   punch2: 0
@@ -254,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8668597876283355851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 1.33, z: 0}
+  m_LocalPosition: {x: 0.37, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8668597875977108227}
@@ -314,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8668597876991766741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.86, y: 0, z: 0}
+  m_LocalPosition: {x: 0.77, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8668597875977108227}
@@ -391,6 +394,7 @@ GameObject:
   - component: {fileID: 7980773871609752957}
   - component: {fileID: 781973813550944755}
   - component: {fileID: 1469892690}
+  - component: {fileID: 1469892691}
   m_Layer: 0
   m_Name: Test_Doge_idle_game_jam_0
   m_TagString: Untagged
@@ -482,3 +486,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1469892691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062014862813700443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd722d62753df04a836b0d16735e2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
