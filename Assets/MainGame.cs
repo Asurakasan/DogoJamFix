@@ -6,10 +6,12 @@ using System.Collections.Generic;
 public class MainGame : MonoBehaviour
 {
     public GameObject Player;
+    public CameraManager cameraManager;
 
     [SerializeField]
     private List<WaveManager> waveManagers;
 
+    [HideInInspector] public bool isfollow;
 
     // private bool isup;
 
@@ -36,7 +38,7 @@ public class MainGame : MonoBehaviour
 
     private void Start()
     {
-        
+        cameraManager = CameraManager.instance;
     }
 
     void Update()
@@ -60,10 +62,14 @@ public class MainGame : MonoBehaviour
     {
         if( ennemylist.Count == 0)
         {
+            if(ArenaWall.Count > index  || ArenaWall.Count > index)
+            {
+                cameraManager.cameraIsfollow = true;
+                ArenaWall[index].SetActive(false);
+                waveManagers.Remove(waveManagers[index]);
+                ArenaWall.Remove(ArenaWall[index]);
+            }
 
-            ArenaWall[index].SetActive(false);
-            waveManagers.Remove(waveManagers[index]);
-            ArenaWall.Remove(ArenaWall[index]);
         }
         
     }

@@ -83,7 +83,7 @@ public class EnemyBase2 : MonoBehaviour
             mainGame.ennemylist.Remove(gameObject);
             Speed = 0;
             DetectionRange = 0;
-            //mainGame.Canexplore(); J'ai commenter cette ligne car elle fesait buger le jeu et je ne comprenais pas pourquoi
+            mainGame.Canexplore(); //J'ai commenter cette ligne car elle fesait buger le jeu et je ne comprenais pas pourquoi
             if (Player.GetComponent<Player>().Droite)
             {
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
