@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -91,6 +92,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+        if(currentLife <= 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         if (Crouched)
         {
             dammage.offset = new Vector2(dammage.offset.x, InCrounch);
