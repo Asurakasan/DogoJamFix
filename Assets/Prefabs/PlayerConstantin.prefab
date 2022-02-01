@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 1469892690}
   - component: {fileID: 1469892691}
   m_Layer: 0
-  m_Name: Test_Doge_idle_game_jam_0
+  m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
