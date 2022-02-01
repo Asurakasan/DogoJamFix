@@ -77,15 +77,20 @@ public class EnemyCat : EnemyBase2
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
+    /* protected override void OnTriggerEnter2D(Collider2D collision)
+     {
+         base.OnTriggerEnter2D(collision);
+
+         IsDead = true;
+         if(IsDead)
+         {
+             Destroy(gameObject);
+         }
+
+     }*/
+    protected override void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
-
-        //destruction du chat quand il sort de l'écran
-        if (collision.gameObject.tag == "wall")
-        {
-            Destroy(gameObject);
-
-        }
+        base.OnCollisionEnter2D(collision);
 
         if(collision.gameObject.tag=="Sol")
         {

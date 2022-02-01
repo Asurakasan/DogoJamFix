@@ -11,6 +11,8 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     private List<WaveManager> waveManagers;
 
+    
+
     [HideInInspector] public bool isfollow;
 
     // private bool isup;
@@ -25,10 +27,11 @@ public class MainGame : MonoBehaviour
     public bool isEnter;
      private bool isspawn;
     public List<GameObject>  ArenaWall;
-    [HideInInspector] public int index;
+    public int index;
    
     public List<GameObject> ennemylist = new List<GameObject>();
 
+    public bool empty = false;
     private void Awake()
     {
         instance = this;
@@ -45,6 +48,7 @@ public class MainGame : MonoBehaviour
     {
         if(isEnter == true )
         {
+                 empty = false;
                 StartCoroutine(waveManagers[index].WaveSpawn());
                 ArenaWall[index].SetActive(true);
                 isEnter = false;
@@ -62,12 +66,13 @@ public class MainGame : MonoBehaviour
     {
         if( ennemylist.Count == 0)
         {
-            if(ArenaWall.Count > index  || ArenaWall.Count > index)
+            if(ArenaWall.Count > index && empty == true)
             {
                 cameraManager.cameraIsfollow = true;
                 ArenaWall[index].SetActive(false);
                 waveManagers.Remove(waveManagers[index]);
                 ArenaWall.Remove(ArenaWall[index]);
+                index++;
             }
 
         }

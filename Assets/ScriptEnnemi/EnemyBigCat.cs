@@ -96,12 +96,15 @@ public class EnemyBigCat : EnemyBase2
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Changement de sens
+    protected override void OnCollisionEnter2D(Collision2D collision) //Changement de sens
     {
+        base.OnCollisionEnter2D(collision);
+
         //Si le gros chat touche un mur il repart dans le sens opposé 
 
-        if (IsDead)
-            Destroy(gameObject);
+
+        /*if (IsDead)
+              Destroy(gameObject);*/
 
         if (collision.gameObject.tag == "wall")
         {

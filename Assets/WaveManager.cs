@@ -5,8 +5,8 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField]
-    private List<EnemyManager> ennemyManager;
-    private EnemyManager currentEnemy;
+    public List<EnemyManager> ennemyManager;
+    public EnemyManager currentEnemy;
      
 
   
@@ -23,7 +23,7 @@ public class WaveManager : MonoBehaviour
     public IEnumerator WaveSpawn()
     {
         
-        for (int h = 0; h < ennemyManager.Count;)
+        for (int h = 0; h < ennemyManager.Count; h++)
         {
 
                     
@@ -47,12 +47,15 @@ public class WaveManager : MonoBehaviour
                         }
 
 
-                   
-                    //currentEnemy.EnemyCount++;
-                    h++;
+
+                //currentEnemy.EnemyCount++;
 
 
-                }
+                        ennemyManager.Remove(ennemyManager[h]);
+
+                    }
+   
+
         }
 
 
@@ -60,10 +63,14 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ennemyManager.Count == 0)
+        {
+            mainGame.empty = true;
 
         }
+    }
      
-       
+      
 
     }
 

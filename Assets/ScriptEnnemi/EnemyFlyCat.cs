@@ -56,7 +56,17 @@ public class EnemyFlyCat : EnemyBase2
 
     }
 
+   /* protected override void OnTriggerEnter2D(Collider2D collision) 
+    {
+        base.OnTriggerEnter2D(collision);
 
+        IsDead = true;
+        if (IsDead)
+        {
+            Destroy(gameObject);
+        }
+
+    }*/
 
     protected override void PlayerDamage(Collider2D player)
     {
@@ -65,12 +75,11 @@ public class EnemyFlyCat : EnemyBase2
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
+    protected override void OnCollisionEnter2D(Collision2D collision) 
     {
+        base.OnCollisionEnter2D(collision);
         //Change le sens quand le chat entre en contact avec le mur
 
-        if (IsDead)
-            Destroy(gameObject);
 
         if (collision.gameObject.tag == "wall")
         {

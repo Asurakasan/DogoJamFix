@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6236356653273329608}
   - component: {fileID: 6236356653273329609}
   - component: {fileID: 6236356653273329610}
+  - component: {fileID: 5679084322031936290}
   m_Layer: 0
   m_Name: FxUlt
   m_TagString: Untagged
@@ -4907,6 +4908,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5679084322031936290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236356653273329654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e4eb1849460bc47add369cb89a56fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6236356653772064951
 GameObject:
   m_ObjectHideFlags: 0

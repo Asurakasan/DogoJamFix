@@ -76,13 +76,13 @@ public class EnemyBase2 : MonoBehaviour
             Attack();
         }
 
-        if (IsDead==true)
+        if (IsDead)
         {
-
-            //Destroy(gameObject);
-            
-
             mainGame.ennemylist.Remove(gameObject);
+            //Destroy(gameObject);
+
+
+
             Speed = 0;
             DetectionRange = 0;
             mainGame.Canexplore(); //J'ai commenter cette ligne car elle fesait buger le jeu et je ne comprenais pas pourquoi
@@ -132,10 +132,24 @@ public class EnemyBase2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, DetectionRange);
     }
 
-    protected void OnTriggerEnter2D(Collider2D Wall)
+
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Out")
+            IsDead = true;
+    }
+    protected virtual void OnTriggerEnter2D(Collider2D Wall)
     {
         if (Wall.gameObject.tag == "wall" && IsDead)
-        Destroy(gameObject);
+        {
+            
+            Destroy(gameObject);
+        }
+
+
+
+
 
     }
 
