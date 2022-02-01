@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     [Header("Animation")]
     public Animator animPlayer;
     public bool bPunch1, bPunch2, bInAnim;
-
+    public GameObject FxUlti;
     [Header("Other")]
     private Rigidbody2D Rigid;
 
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
                 animPlayer.SetBool("IsCrounching", false);
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && chargeUlt > maxUlt)
+            if (Input.GetKeyDown(KeyCode.R) && chargeUlt >= maxUlt)
                 Ulti();
             if (!Input.anyKey)
                 Idle();
@@ -312,6 +312,7 @@ public class Player : MonoBehaviour
     }
     void Ulti()
     {
+        Instantiate(FxUlti, transform.position, Quaternion.identity);
         Collider2D[] ultenemies = Physics2D.OverlapCircleAll(ult.position, ultiRange, enemyLayers);
         foreach (Collider2D enemy in ultenemies)
         {
