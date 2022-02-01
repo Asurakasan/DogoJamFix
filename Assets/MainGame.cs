@@ -46,10 +46,12 @@ public class MainGame : MonoBehaviour
 
     void Update()
     {
-        if(isEnter == true )
+      
+        if (isEnter == true )
         {
-                 empty = false;
-                StartCoroutine(waveManagers[index].WaveSpawn());
+            StartCoroutine(waveManagers[index].WaveSpawn());
+
+            empty = false;
                 ArenaWall[index].SetActive(true);
                 isEnter = false;
         }

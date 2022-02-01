@@ -5,18 +5,18 @@ using UnityEngine;
 public class Ult : MonoBehaviour
 {
 
-    Animator ultanim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ultanim = gameObject.GetComponent<Animator>();
-    }
 
+    public void Destroyobject()
+    {
+
+        Destroy(gameObject);
+
+    }
     // Update is called once per frame
     void Update()
     {
         
-
+        
 
 
     }

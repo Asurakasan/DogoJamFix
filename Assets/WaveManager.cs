@@ -26,8 +26,8 @@ public class WaveManager : MonoBehaviour
         for (int h = 0; h < ennemyManager.Count; h++)
         {
 
-                    
-                    currentEnemy = ennemyManager[h];
+            
+                     currentEnemy = ennemyManager[h];
                     mainGame.countdown = currentEnemy.CoolDownBeforeSpawn;
                     yield return new WaitForSeconds(currentEnemy.CoolDownBeforeSpawn);
                     for (int j = 0; j < currentEnemy.EnemyCount; j++)
@@ -45,16 +45,15 @@ public class WaveManager : MonoBehaviour
                           yield return new WaitForSeconds(0.5f);
 
                         }
-
-
-
                 //currentEnemy.EnemyCount++;
 
-
-                        ennemyManager.Remove(ennemyManager[h]);
-
                     }
-   
+
+            if (h == ennemyManager.Count -1 )
+            {
+                mainGame.empty = true;
+
+            }
 
         }
 
@@ -63,11 +62,9 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ennemyManager.Count == 0)
-        {
-            mainGame.empty = true;
 
-        }
+       // ennemyManager.Remove(currentEnemy);
+       
     }
      
       
