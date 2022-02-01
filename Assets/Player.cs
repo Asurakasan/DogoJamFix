@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     MainGame maingame;
-   CameraManager cameramanager;
+    CameraManager cameramanager;
 
     private GameObject player;
     [Header("Attack Point")]
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
 
     [Header("Animation")]
     public Animator animPlayer;
+    public bool bPunch1, bPunch2, bInAnim;
 
     [Header("Other")]
     private Rigidbody2D Rigid;
@@ -71,6 +73,7 @@ public class Player : MonoBehaviour
         currentLife = maxLife;
         chargeUlt = 0;
         saveSpeed = speed;
+        instance = this;
     }
     private void Start()
     {
@@ -127,8 +130,7 @@ public class Player : MonoBehaviour
         {
             animPlayer.SetBool("Hurt", false);
 
-            if (Input.GetKeyDown(KeyCode.Space))
-                Attack1();
+            
 
             
             if (Input.GetKeyUp(KeyCode.Space))
@@ -171,6 +173,22 @@ public class Player : MonoBehaviour
 
         if (Crouched && Input.GetKeyDown(KeyCode.Space))
             animPlayer.SetTrigger("Kick");
+
+        if (Input.GetKeyDown(KeyCode.Space) && !bInAnim && !bPunch1 && !bPunch2)
+            Attack1();
+
+        if(!bPunch2)
+            animPlayer.SetBool("Punch2", false);
+
+        if (bInAnim && bPunch1)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                bPunch2 = true;
+                animPlayer.SetBool("Punch2", true);
+            }
+
+        if (bPunch2 && !bPunch1 && !bInAnim)
+            Attack2();
     }
 
     void Attack1()
@@ -195,10 +213,9 @@ public class Player : MonoBehaviour
         
     }
 
-    /*void Attack2()
+    void Attack2()
     {
-        Debug.Log("punch2");
-       
+        animPlayer.SetTrigger("Attack2");
         speed = 0;
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitenemies)
@@ -215,8 +232,8 @@ public class Player : MonoBehaviour
             attackPoint = Punch2;
             SpritPlayer.sprite = SpriteList[5];
         }
-
-    }*/
+        bPunch2 = false;
+    }
 
     void EnemyDamage(Collider2D enemy)
     {
