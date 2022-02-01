@@ -186,12 +186,6 @@ public class Player : MonoBehaviour
         if (!bPunch2)
             animPlayer.SetBool("Punch2", false);
 
-        if (bInAnim && bPunch1)
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                bPunch2 = true;
-                animPlayer.SetBool("Punch2", true);
-            }
 
         if (bPunch2 && !bPunch1 && !bInAnim)
             Attack2();
