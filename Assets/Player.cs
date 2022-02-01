@@ -167,6 +167,31 @@ public class Player : MonoBehaviour
             if (!Input.anyKey)
                 Idle();
 
+
+
+            if (Input.GetKeyDown(KeyCode.Space) && !bInAnim && !bPunch1 && !bPunch2)
+            {
+                Attack1();
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && bInAnim && bPunch1 && !bPunch2)
+            {
+                bPunch2 = true;
+                bPunch1 = false;
+                bInAnim = false;
+            }
+            else if (Input.GetKeyUp(KeyCode.Space) && bInAnim && bPunch1 && bPunch2)
+            {
+                bInAnim = false;
+                bPunch1 = false; 
+                bPunch2 = false;
+            }
+            else if (bPunch2 && !bPunch1 && !bInAnim)
+            {
+                Attack2();
+            }
+
+            if (!bPunch2)
+                animPlayer.SetBool("Punch2", false);
         }
 
         if(IsGrounded)
@@ -178,20 +203,6 @@ public class Player : MonoBehaviour
         if (Crouched && Input.GetKeyDown(KeyCode.Space))
             animPlayer.SetTrigger("Kick");
 
-        if (Input.GetKeyDown(KeyCode.Space) && !bInAnim && !bPunch1 && !bPunch2)
-            Attack1();
-
-        if (Input.GetKeyUp(KeyCode.Space) && bInAnim && bPunch1 && bPunch2)
-        {
-            bPunch2 = false;
-            Attack1();
-        }
-        if (!bPunch2)
-            animPlayer.SetBool("Punch2", false);
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && bPunch2 && !bPunch1 && !bInAnim)
-            Attack2();
     }
 
     void Attack1()
